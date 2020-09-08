@@ -1,6 +1,7 @@
 - name: install the latest version of FTP server
   hosts:
     - all
-  dnf:
-    name: vsftpd
-    state: latest
+  task:
+    dnf:
+      name: vsftpd
+      state: latest
