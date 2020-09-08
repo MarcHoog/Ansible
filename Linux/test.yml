@@ -1,8 +1,7 @@
 #Simple ping Command 
 ---
- - name: "Get ping response"
-   hosts: all
+ - name: "Simple Ping client test"
+   hosts: 
+     - all
    tasks:
    - action: ping
-     register: output
-   - debug: msg="{output.stdout}"
