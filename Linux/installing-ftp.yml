@@ -1,8 +1,14 @@
 ---
-- name: "install the latest version of FTP server"
-  hosts:
-    - all
-  task:
-    dnf:
-      name: vsftpd
-      state: latest
+  - name: Playbook
+    hosts: webservers
+    become: yes
+    become_user: root
+    tasks:
+      - name: ensure vsftpd latetst version is running
+        dnf:
+          name: vsftpd
+          state: latest
+      - name: ensure vsftpd has started
+        service:
+          name: vsftpd
+          state: started
