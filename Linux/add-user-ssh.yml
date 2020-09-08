@@ -1,3 +1,4 @@
+#add user ssh to the key thingie idk really what this does but we will check
 ---
  - hosts: all
    vars:
@@ -6,35 +7,35 @@
    remote_user: ubuntu
    become: true
 tasks:
-- name: Add a new user named ansiblebot
-     user:
-          name: ansiblebot
-          shell: /bin/bash
-          password: "{{ ansiblebot_password }}"
-- name: Add ansiblebot user to the sudoers
-     copy:
-          dest: "/etc/sudoers.d/ansiblebot"
-          content: "ansiblebot  ALL=(ALL)  NOPASSWD: ALL"
-- name: Deploy SSH Key
-     authorized_key: user=ansiblebot
-                     key="{{ lookup('file', '/home/ansiblebot/.ssh/id_rsa.pub') }}"
-                     state=present
-- name: Disable Password Authentication
-     lineinfile:
-           dest=/etc/ssh/sshd_config
-           regexp='^PasswordAuthentication'
-           line="PasswordAuthentication no"
-           state=present
-           backup=yes
-- name: Disable Root Login
-     lineinfile:
-           dest=/etc/ssh/sshd_config
-           regexp='^PermitRootLogin'
-           line="PermitRootLogin no"
-           state=present
-           backup=yes
-     notify:
-       - restart ssh
+  - name: Add a new user named ansiblebot
+       user:
+            name: ansiblebot
+            shell: /bin/bash
+            password: "{{ ansiblebot_password }}"
+  - name: Add ansiblebot user to the sudoers
+       copy:
+            dest: "/etc/sudoers.d/ansiblebot"
+            content: "ansiblebot  ALL=(ALL)  NOPASSWD: ALL"
+  - name: Deploy SSH Key
+       authorized_key: user=ansiblebot
+                       key="{{ lookup('file', '/home/ansiblebot/.ssh/id_rsa.pub') }}"
+                       state=present
+  - name: Disable Password Authentication
+       lineinfile:
+             dest=/etc/ssh/sshd_config
+             regexp='^PasswordAuthentication'
+             line="PasswordAuthentication no"
+             state=present
+             backup=yes
+  - name: Disable Root Login
+       lineinfile:
+             dest=/etc/ssh/sshd_config
+             regexp='^PermitRootLogin'
+             line="PermitRootLogin no"
+             state=present
+             backup=yes
+       notify:
+         - restart ssh
 handlers:
    - name: restart ssh
      service:
