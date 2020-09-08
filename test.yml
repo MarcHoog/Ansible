@@ -1,0 +1,8 @@
+#Simple ping Command 
+---
+ - name: "Get ping response"
+   hosts: all
+   tasks:
+   - action: ping
+     register: output
+   - debug: msg="{output.stdout}"
