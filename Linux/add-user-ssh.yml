@@ -4,9 +4,9 @@
    vars:
      - ansiblebot_password: 'Ansible123!'
    gather_facts: no
-   remote_user: ubuntu
+   remote_user: sysop
    become: true
-tasks:
+   tasks:
   - name: Add a new user named ansiblebot
        user:
             name: ansiblebot
@@ -36,7 +36,7 @@ tasks:
              backup=yes
        notify:
          - restart ssh
-handlers:
+   handlers:
    - name: restart ssh
      service:
        name=sshd
