@@ -1,5 +1,6 @@
-- hosts:
+- name: install the latest version of FTP server
+  hosts:
     - all
-  tasks:
-    - action: apt update_cache=yes cache_valid_time=3600
-    - action: apt pkg=vsftpd state=present
+  dnf:
+    name: vsftpd
+    state: latest
