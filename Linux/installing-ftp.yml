@@ -1,4 +1,5 @@
-- name: install the latest version of FTP server
+---
+- name: "install the latest version of FTP server"
   hosts:
     - all
   task:
