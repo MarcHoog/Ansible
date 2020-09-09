@@ -4,11 +4,7 @@
     become: yes
     become_user: root
     tasks:
-      - name: ensure vsftpd latetst version is running
+      - name: Checking for updates
         dnf:
-          name: vsftpd
+          name: "*"
           state: latest
-      - name: ensure vsftpd has started
-        service:
-          name: vsftpd
-          state: started
