@@ -8,3 +8,7 @@
         dnf:
           name: "*"
           state: latest
+      - name: Installing FTP serverv
+        dnf:
+          name: "vsftpd"
+          state: latest
