@@ -1,0 +1,21 @@
+#Test projectje voor het aanmaken en veranderen van bestanden enzo 
+---
+  - name: Creating a hapache webserver
+      hosts: all
+      become: yes
+      become_user: root
+      task:
+        - name: Checking for updates/installing
+          dnf: httpd
+            name:
+            state: latest
+        - name: Starting up apache /enabling appache
+          systemd:
+            state: started
+            name: httpd
+            masked: no
+            enabled: yes
+        - name: Creating the group webdevelopers 
+          group:
+            name: webdevelopers
+            state: present
