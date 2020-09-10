@@ -1,4 +1,10 @@
-#Test projectje voor het aanmaken en veranderen van bestanden enzo 
+# Test projectje voor het aanmaken en veranderen van bestanden enzo
+#     chgrp   /etc/httpd/conf -R
+#     chmod 765 /etc/httpd/conf -R
+#     chgrp  765 /etc/httpd/conf.d -R
+#     chmod 765 /etc/httpd/conf.d -R
+#     chgrp  765 /etc/httpd.conf.modules.d -R
+#     chmod 765 /etc/httpd/conf.modules.d -R
 ---
   - name: creating a hapache webserver
     hosts: all
@@ -17,5 +23,28 @@
           enabled: yes
       - name: Creating the group webdevelopers 
         group:
-          name: "webdevelopers"
+          name: "web-developers"
           state: present
+      - name: Creating user and adding him to web-devevelopers
+        user:
+          name: "web-dev-employee"
+          group: "web-developers"
+          create_home: no
+      - name: Change httpd folders right
+        file:
+          path: /etc/httpd
+          group: "web-developers"
+          mode: '0765'
+      - name: Changing conf folders rights and group ownership
+        file:
+          path: "{{ location }}"
+          group: "web-developers"
+          mode: '0765'
+        loop: 
+          - /etc/httpd/conf
+          - /etc/httpd/conf.d
+          - /etc/httpd.conf.modules.d
+      - name: 
+
+
+
