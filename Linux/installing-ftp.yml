@@ -6,7 +6,7 @@
     tasks:
       - name: Checking for updates
         dnf:
-          name: "*"
+          name: "vsftpd"
           state: latest
       - name: Installing FTP server
         dnf:
