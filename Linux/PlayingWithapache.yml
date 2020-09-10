@@ -6,8 +6,8 @@
     become_user: root
     task:
       - name: Checking for updates/installing
-        dnf: "httpd"
-          name:
+        dnf: 
+          name: "httpd"
           state: latest
       - name: Starting up apache /enabling appache
         systemd:
