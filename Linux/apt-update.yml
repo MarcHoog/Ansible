@@ -1,0 +1,8 @@
+#apt update voor elmira
+---
+  - name: apt updating all
+    host: all
+    tasks:
+      - name: Gathering all updates
+        apt:
+          upgrade: dist
