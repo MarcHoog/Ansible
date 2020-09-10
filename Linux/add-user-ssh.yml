@@ -1,6 +1,6 @@
 #add user ssh to the key thingie idk really what this does but we will check
 ---
- - hosts: all
+  - hosts: all
    vars:
      - ansiblebot_password: 'Ansible123!'
    gather_facts: no

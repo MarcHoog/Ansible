@@ -1,5 +1,5 @@
 ---
-  - ame: Playbook
+  - name: Playbook
     hosts: all
     become: yes
     become_user: root
