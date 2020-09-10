@@ -12,6 +12,7 @@
         dnf:
           name: "vsftpd"
           state: latest
-      - name: starting ftp server
-        systemd: "vsftpd"
+      - name: Make sure a service is running
+        systemd:
           state: started
+          name: httpd
