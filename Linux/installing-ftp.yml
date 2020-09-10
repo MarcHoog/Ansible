@@ -8,7 +8,10 @@
         dnf:
           name: "*"
           state: latest
-      - name: Installing FTP serverv
+      - name: Installing FTP server
         dnf:
           name: "vsftpd"
           state: latest
+      - name: starting ftp server
+        systemd: "vsftpd"
+          state: started
