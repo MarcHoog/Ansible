@@ -1,7 +1,0 @@
-#Simple ping Command 
----
- - name: "Simple Ping client test"
-   hosts: 
-     - all
-   tasks:
-   - action: ping
