@@ -1,5 +1,6 @@
 #apt update voor elmira
 ---
+-
   - name: apt updating all
     host: all
     tasks:
