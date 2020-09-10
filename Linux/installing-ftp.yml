@@ -1,29 +1,24 @@
---- 
-- 
-  - 
-    become: true
-    become_user: root
+---
+-
+  - name: Playbook
     hosts: all
-    name: Playbook
-    tasks: 
-      - 
-        dnf: 
+    become: yes
+    become_user: root
+    tasks:
+      - name: Checking for updates
+        dnf:
           name: "*"
           state: latest
-        name: "Checking for updates"
-      - 
-        dnf: 
-          name: vsftpd
+      - name: Installing FTP server
+        dnf:
+          name: "vsftpd"
           state: latest
-        name: "Installing FTP server"
-      - 
-        name: "Make sure a service is running en not masked"
-        systemd: 
-          masked: false
-          name: vsftpd
+      - name: Make sure a service is running en not masked
+        systemd:
           state: started
-      - 
-        name: "Enabling service bij boot"
-        systemd: 
-          enabled: true
-          name: vsftpd
+          name: "vsftpd"
+          masked: no
+      - name: Enabling service bij boot
+        systemd:
+          name: "vsftpd"
+          enabled: yes
