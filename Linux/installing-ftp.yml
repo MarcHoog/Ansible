@@ -1,5 +1,5 @@
 ---
-  - name: Playbook
+  - name: installing ftp playbook
     hosts: all
     become: yes
     become_user: root
