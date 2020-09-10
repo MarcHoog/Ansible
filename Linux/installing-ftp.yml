@@ -15,4 +15,4 @@
       - name: Make sure a service is running
         systemd:
           state: started
-          name: httpd
+          name: "vsftpd"
