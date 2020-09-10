@@ -1,9 +1,8 @@
 #Simple ping Command 
 --- 
-- name: Simpele ping test
+- name: Pinged de Machine
   hosts: 
     - all
-  name: Simple Ping client test
   tasks: 
     - 
       action: ping
