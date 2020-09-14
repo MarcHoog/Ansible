@@ -5,6 +5,10 @@
 #     chmod 765 /etc/httpd/conf.d -R
 #     chgrp  765 /etc/httpd.conf.modules.d -R
 #     chmod 765 /etc/httpd/conf.modules.d -R
+
+#      - name: Reboot and going back to save point
+#        reboot:
+
 ---
   - name: creating a hapache webserver
     hosts: all
@@ -45,8 +49,6 @@
           - '/etc/httpd/conf'
           - '/etc/httpd/conf.d'
           - '/etc/httpd/conf.modules.d'
-      - name: Just reboot the motherfucker
-        reboot:
 
 
 
