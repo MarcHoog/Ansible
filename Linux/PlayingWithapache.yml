@@ -34,6 +34,8 @@
           name: "web-dev-employee"
           group: "web-developers"
           create_home: no
+      - name: Unlock password and set it to empty
+        command: passwd -d web-dev-employee
       - name: Change httpd folders right
         file:
           path: /etc/httpd
