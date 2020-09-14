@@ -53,6 +53,10 @@
           - '/etc/httpd/conf'
           - '/etc/httpd/conf.d'
           - '/etc/httpd/conf.modules.d'
+      - name: Changing the users homegroup to the HTTPD folder
+        user:
+          name: "web-dev-employee"
+          home: '/etc/httpd'
 
 
 
