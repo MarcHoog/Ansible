@@ -38,12 +38,13 @@
       - name: Changing conf folders rights and group ownership
         file:
           path: "{{ item }}"
+          recurse: yes
           group: "web-developers"
           mode: '0765'
         with_items: 
           - '/etc/httpd/conf'
           - '/etc/httpd/conf.d'
-          - '/etc/httpd.conf.modules.d'
+          - '/etc/httpd/conf.modules.d'
 
 
 
