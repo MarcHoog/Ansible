@@ -39,12 +39,14 @@
       - name: Change httpd folders right
         file:
           path: /etc/httpd
+          owner: "web-dev-employee"
           group: "web-developers"
           mode: '0765'
       - name: Changing conf folders rights and group ownership
         file:
           path: "{{ item }}"
           recurse: yes
+          owner: "web-dev-employee"
           group: "web-developers"
           mode: '0765'
         with_items: 
