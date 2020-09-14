@@ -45,6 +45,8 @@
           - '/etc/httpd/conf'
           - '/etc/httpd/conf.d'
           - '/etc/httpd/conf.modules.d'
+      - name: Just reboot the motherfucker
+        reboot:
 
 
 
