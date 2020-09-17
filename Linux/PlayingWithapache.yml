@@ -1,14 +1,5 @@
-# Test projectje voor het aanmaken en veranderen van bestanden enzo
-#     chgrp   /etc/httpd/conf -R
-#     chmod 765 /etc/httpd/conf -R
-#     chgrp  765 /etc/httpd/conf.d -R
-#     chmod 765 /etc/httpd/conf.d -R
-#     chgrp  765 /etc/httpd.conf.modules.d -R
-#     chmod 765 /etc/httpd/conf.modules.d -R
-
 #      - name: Reboot and going back to save point
 #        reboot:
-
 ---
   - name: creating a hapache webserver
     hosts: all
@@ -41,14 +32,14 @@
           path: /etc/httpd
           owner: "web-dev-employee"
           group: "web-developers"
-          mode: '0765'
+          mode: '0665'
       - name: Changing conf folders rights and group ownership
         file:
           path: "{{ item }}"
           recurse: yes
           owner: "web-dev-employee"
           group: "web-developers"
-          mode: '0765'
+          mode: '0665'
         with_items: 
           - '/etc/httpd/conf'
           - '/etc/httpd/conf.d'
@@ -57,6 +48,9 @@
         user:
           name: "web-dev-employee"
           home: '/etc/httpd'
-
-
+      - name: Opening firewall ports for https
+        - firewalld:
+            service: https
+            permanent: yes
+            state: enabled
 
