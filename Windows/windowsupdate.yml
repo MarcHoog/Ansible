@@ -1,10 +1,9 @@
 #kekkiestan
 --- 
--
-  hosts: 
+- hosts: 
     - all
   - name: Install all security, critical, and rollup updates without a scheduled task
-    win_updates:
+    ansible.windows.win_updates:
       category_names:
         - SecurityUpdates
         - CriticalUpdates
