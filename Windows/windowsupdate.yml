@@ -1,5 +1,5 @@
 --- 
-  - name: creating a hapache webserver
-    hosts: all
-    connection: winrm
-    tasks:
+- name: creating a hapache webserver
+  hosts: all
+  connection: winrm
+  tasks:
