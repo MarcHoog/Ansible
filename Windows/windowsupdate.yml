@@ -2,6 +2,7 @@
 - name:  Windows Update
   hosts: all
   connection: winrm
+  winrm_transport: basic
   gather_facts: false
   tasks:
     - name: Running Windows Update
