@@ -48,9 +48,4 @@
         user:
           name: "web-dev-employee"
           home: '/etc/httpd'
-      - name: Opening firewall ports for https
-        firewalld:
-          service: https
-          permanent: yes
-          state: enabled
 
