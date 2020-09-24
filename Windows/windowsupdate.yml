@@ -2,7 +2,6 @@
 - name:  Windows Update
   hosts: all
   connection: winrm
-  ansible_winrm_transport: basic
   gather_facts: false
   tasks:
     - name: Running Windows Update
