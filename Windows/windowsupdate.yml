@@ -4,5 +4,10 @@
   connection: winrm
 
   tasks:
-    reboot: yes
-    reboot_timeout: 420
+    win_updates:
+      category_names:
+        - Application
+        - CriticalUpdates
+        - DefinitionUpdates
+        - SecurityUpdates
+        - Updates
