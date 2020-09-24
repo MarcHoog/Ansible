@@ -3,8 +3,3 @@
     hosts: all
     connection: winrm
     tasks:
-      win_updates:
-        category_names:
-          - SecurityUpdates
-          - Updates
-      reboot: yes
