@@ -1,11 +1,12 @@
 #kekkiestan
 --- 
-- name: Run Updates on Terminal Servers then wait 7 mins
-  hosts: all
-  connection: winrm
+  - name: Run Updates on Terminal Servers then wait 7 mins
+    hosts: all
+    connection: winrm
 
-  tasks:
-    win_updates:
-      category_names:
-        - SecurityUpdates
-    reboot: yes
+    tasks:
+      win_updates:
+        category_names:
+          - SecurityUpdates
+          - Updates
+      reboot: yes
