@@ -1,5 +1,17 @@
---- 
-- name: creating a hapache webserver
+---
+- name: Run Updates on Terminal Servers then wait 7 mins
   hosts: all
   connection: winrm
+
   tasks:
+    win_updates:
+      category_names:
+        - Application
+        - CriticalUpdates
+        - DefinitionUpdates
+        - SecurityUpdates
+        - Updates
+      whitelist:
+        - KB4093120
+    reboot: yes
+    reboot_timeout: 420
