@@ -7,4 +7,4 @@
     - name: bobby checker 9000
       community.windows.win_domain_user:
         name: bob
-        state: present 
+        state: absent 
