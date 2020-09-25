@@ -13,6 +13,7 @@
         password: B0bP4ssw0rd
         state: present
         groups:
+          - Domain Users
           - Domain Admins
         street: 123 4th St.
         city: Sometown
