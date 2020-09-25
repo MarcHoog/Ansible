@@ -5,7 +5,7 @@
   gather_facts: false
   tasks:
     - name: Running Windows Update
-      win_updates:
+      ansible.windows.win_updates:
         category_names: ['SecurityUpdates','CriticalUpdates','UpdateRollups', 'Updates', 'DefinitionUpdates']
       register: result
 
