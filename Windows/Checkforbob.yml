@@ -12,7 +12,7 @@
         company: BobCo
         password: B0bP4ssw0rd
         state: present
-        path: ou=User,dc=peeps,dc=piepers
+        path: CN=Users,DC=peeps,DC=piepers
         groups:
           - Domain Users
           - Domain Admins
