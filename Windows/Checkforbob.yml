@@ -4,7 +4,20 @@
   connection: winrm
   gather_facts: false
   tasks:
-    - name: bobby checker 9000
+    - name: Ensure user bob is present with address information
       community.windows.win_domain_user:
         name: bob
-        state: absent 
+        firstname: Bob
+        surname: Smith
+        company: BobCo
+        password: B0bP4ssw0rd
+        state: present
+        groups:
+          - Domain Admins
+        street: 123 4th St.
+        city: Sometown
+        state_province: IN
+        postal_code: 12345
+        country: US
+        attributes:
+          telephoneNumber: 555-123456
