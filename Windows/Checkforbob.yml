@@ -6,12 +6,13 @@
   tasks:
     - name: Ensure user bob is present with address information
       community.windows.win_domain_user:
-        name: bob
-        firstname: Bob
+        name: bobaardappel
+        firstname: Aardbob
         surname: Smith
         company: BobCo
         password: B0bP4ssw0rd
         state: present
+        path: ou=User,dc=peeps,dc=piepers
         groups:
           - Domain Users
           - Domain Admins
