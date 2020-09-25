@@ -1,0 +1,10 @@
+---
+- name: check for bobby
+  hosts: all
+  connection: winrm
+  gather_facts: false
+  tasks:
+    - name: bobby checker 9000
+      community.windows.win_domain_user:
+        name: bob
+        state: absent 
