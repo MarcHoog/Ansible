@@ -4,9 +4,11 @@
 - name: invoke SQL powershell
   hosts: all
   connection: winrm
-  gather_facts: false
   tasks:
-    - name: Invoke SQL Read sql table data
-    - ansible.windows.win_shell: .\kekkie.ps1 >> .\somelog.txt
-      args:
-        chdir: C:\ps
+     - name: execute a PowerShell command on remote 
+      Windows hosts
+      win_command: (get-service wuauserv | select status 
+       | Format-Wide | Out-String).trim()
+      register: output
+ 
+    - debug: var=output.stdout
