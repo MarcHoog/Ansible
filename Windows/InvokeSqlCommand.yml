@@ -4,6 +4,7 @@
 - name: invoke SQL powershell
   hosts: all
   connection: winrm
+  gather_facts: false
   tasks:
     - name: execute a PowerShell command on remote Windows hosts
       win_command: (get-service wuauserv | select status | Format-Wide | Out-String).trim()
