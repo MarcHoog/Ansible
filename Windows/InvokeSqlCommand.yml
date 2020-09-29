@@ -7,7 +7,7 @@
   gather_facts: false
   tasks:
     - name: Invoke SQL Read sql table data
-      ansible.windows.win_shell: |
+      win_shell: |
         $value = Test-Path -Path C:\temp
         if ($value) {
             Remove-Item -Path C:\temp -Force
