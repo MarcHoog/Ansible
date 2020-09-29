@@ -8,4 +8,4 @@
     - name: Get first Employee name in table
       win_shell: $employee = Read-SqlTableData -ServerInstance "srv-winess19" -DatabaseName "Challenge" -SchemaName "dbo" -TableName "user" -TopN 1 -ColumnName "name"
     - name: Print Employee name
-      win_shell: print $employee
+      win_shell: write $employee
