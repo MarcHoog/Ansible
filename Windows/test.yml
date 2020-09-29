@@ -1,5 +1,7 @@
 ---
-- hosts: win
+- hosts: all
+  connection: winrm
+  gather_facts: false
   tasks:
    - name: run an executable using win_command
      win_command: whoami.exe
