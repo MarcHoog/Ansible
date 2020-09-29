@@ -6,4 +6,4 @@
   connection: winrm
   tasks:
     - name: execute a PowerShell command on remote Windows hosts
-      win_shell: $employee = Read-SqlTableData -ServerInstance "srv-winess19" -DatabaseName "Challenge" -SchemaName "dbo" -TableName "user" -TopN 1 -ColumName "name"
+      win_shell: $employee = Read-SqlTableData -ServerInstance "srv-winess19" -DatabaseName "Challenge" -SchemaName "dbo" -TableName "user" -TopN 1 -ColumnName "name"
