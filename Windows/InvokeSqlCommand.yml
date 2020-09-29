@@ -7,6 +7,6 @@
   gather_facts: false
   tasks:
     - name: Invoke SQL Read sql table data
-    ansible.windows.win_shell: C:\kekkie.ps1 >> C:\somelog.txt
-    args:
-      chdir: C:\ps
+    - ansible.windows.win_shell: C:\kekkie.ps1 >> C:\somelog.txt
+      args:
+        chdir: C:\ps
