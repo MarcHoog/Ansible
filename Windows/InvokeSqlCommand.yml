@@ -7,5 +7,5 @@
   tasks:
     - name: Get first Employee name in table
       win_shell: |
-        $employee = Read-SqlTableData -ServerInstance "srv-winess19" -DatabaseName "Challenge" -SchemaName "dbo" -TableName "user" -TopN 1 -ColumnName "name"
+        $employee = Read-SqlTableData -ServerInstance "srv-winess19" -DatabaseName "Challenge" -SchemaName "dbo" -TableName "user" -TopN 1 -ColumnName "name" -OutputAs DataRow
         write $employee
