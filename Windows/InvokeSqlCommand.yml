@@ -8,4 +8,5 @@
   tasks:
     - name: Invoke SQL Read sql table data
       win_shell: |
-      Read-SqlTableData -ServerInstance "srv-winess19" -DatabaseName "Challenge" -SchemaName "dbo" -TableName "user" -TopN 3 ;
+      ping 192.168.113.131
+    
