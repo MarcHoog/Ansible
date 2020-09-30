@@ -11,7 +11,7 @@
         foreach($employee in $data)
         {
         write-output $employee
-        New-ADUser -Name $employee.name -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.name -Path $employee.path -Enabled $false
+        New-ADUser -Name $employee.name -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.name -Path $employee.path -Company $employee.company -City $employee.state -Enabled $false
         } 
         
 
