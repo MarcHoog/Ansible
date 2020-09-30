@@ -8,12 +8,11 @@
     - name: Create user
       win_shell: |
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"
-        write-output $data
         foreach($employee in $data)
         {
         write-output $employee
         if ($emloyee.creation -eq "True" -And $emlpoyee.state -eq  "True") {
-        New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Company $employee.company -City $employee.city -Enabled $False
+        New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Path "CN=sysop,CN=Users,DC=peeps,DC=piepers" -Company $employee.company -City $employee.city -Enabled $False
         Invoke-Sqlcmd -Query "UPDATE user2 SET creation = 0 WHERE id = $employee.id "
         }
         ElseIf ($employee.creation -eq "False" -And $employee.state -eq "False") {
