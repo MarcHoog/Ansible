@@ -12,11 +12,11 @@
         foreach($employee in $data)
         {
         write-output $employee
-        if ($emloyee.creation = $True -And $emlpoyee.state = $True) {
+        if ($emloyee.creation = True -And $emlpoyee.state = True) {
         New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Company $employee.company -City $employee.city -Enabled $False
         Invoke-Sqlcmd -Query "UPDATE user2 SET creation = 0 WHERE id = $employee.id "
         }
-        Elif ($employee.creation = $False -And $employee.state = $False) {
+        Elif ($employee.creation = False -And $employee.state = False) {
         Write-output "HOI"
          } 
         } 
