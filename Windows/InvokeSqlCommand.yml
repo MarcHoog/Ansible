@@ -7,5 +7,5 @@
   tasks:
     - name: Get first Employee name in table
       win_shell: |
-        $employee = Read-SqlTableData -ServerInstance "srv-winess19" -DatabaseName "Challenge" -SchemaName "dbo" -TableName "user" -TopN 1 -ColumnName "name" -OutputAs DataRow
+        $employee = Invoke-Sqlcmd -Query "SELECT TOP (3) [name],[firstname],[lastname],[company],[state],[path],[present] FROM [Challenge].[dbo].[user]" -ServerInstance "srv-winess19"
         write $employee
