@@ -16,7 +16,7 @@
         Invoke-Sqlcmd -Query "UPDATE user2 SET creation = 0 WHERE id = $employee.id "
         }
         Elif ($employee.creation = $False and $employee.state $False) {
-
+        Write-output "HOI"
          } 
         } 
         
