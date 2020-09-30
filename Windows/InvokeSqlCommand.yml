@@ -8,6 +8,7 @@
     - name: Create user
       win_shell: |
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"
+        write-output $data
         foreach($employee in $data)
         {
         write-output $employee
