@@ -7,7 +7,7 @@
   tasks:
     - name: Create user
       win_shell: |
-        $data = Invoke-Sqlcmd -Query "SELECT TOP (200) [name],[firstname],[lastname],[company],[state],[path],[present] FROM [Challenge].[dbo].[user]" -ServerInstance "srv-winess19"
+        $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user]" -ServerInstance "srv-winess19"
         foreach($employee in $data)
         {
         write-output $employee
