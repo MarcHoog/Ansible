@@ -41,7 +41,7 @@
 
         New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Path "CN=Users,DC=peeps,DC=piepers" -Company $employee.company -City $employee.city -Enabled $False -AccountPassword $SecurePassword
         Invoke-Sqlcmd -Query "UPDATE Challenge.dbo.user2 SET creation = 0 WHERE ID = $($employee.ID) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
-        Invoke-Sqlcmd -Query "INSERT INTO passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.Name)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
+        Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.Name)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         }
         ElseIf ($employee.creation -eq "False" -And $employee.state -eq "False") {
         Write-output "HOI"
