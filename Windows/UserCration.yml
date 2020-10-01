@@ -1,0 +1,38 @@
+#trying to invoke powershell crap in ansible so that we can do all kinds of awesome things 
+# We enjoy doing kinda awesome things like voquein
+---
+- name: invoke SQL powershell
+  hosts: all
+  connection: winrm
+  tasks:
+    - name: Creating users
+      win_shell: |
+        $data = Invoke-Sqlcmd -Query "SELECT * WHERE creation = True FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"
+        foreach($employee in $data){
+        [int] $inc = 0
+          if (Get-ADuser -Filter {SamAccountName -eq "$employee.username"}) 
+          {    
+            do 
+             {
+                $inc ++
+                $Username = $employee.username + [string]$inc
+             } 
+            until (-not (Get-ADuser -Filter {SamAccountName -eq "$Username"}))
+          }
+          New-ADUser -Name $username `
+          -GivenName $employee.firstname `
+          -Surname $employee.lastname `
+          -SamAccountName $employee.username `
+          -Path "CN=sysop,CN=Users,DC=peeps,DC=piepers" `
+          -Company $employee.company `
+          -City $employee.city `
+          -Enabled $False
+        }
+    - name: Disabling users
+      win_shell: /
+        $data = Invoke-Sqlcmd -Query "SELECT * WHERE creation = FALSE FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"
+        foreach($employee in $data){
+          Disable-ADAccount -Identity $employee.username
+          }
+        }
+

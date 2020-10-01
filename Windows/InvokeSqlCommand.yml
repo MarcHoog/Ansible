@@ -13,7 +13,7 @@
         if ($employee.creation -eq "True" -And $employee.state -eq "True") {
         Write-output "Deze statemennt was TRUE en ik ga nu " + $employee.username  + " aanmaken"  
         New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Path "CN=sysop,CN=Users,DC=peeps,DC=piepers" -Company $employee.company -City $employee.city -Enabled $False
-        Invoke-Sqlcmd -Query "UPDATE [Challenge].[dbo].[user2] SET creation = 0 WHERE ID = $employee.ID" -ServerInstance "srv-winess19"
+        Invoke-Sqlcmd -Query "UPDATE dbo.user2 SET creation = 0 WHERE ID = $employee.ID" -Database "srv-winess19"
         }
         ElseIf ($employee.creation -eq "False" -And $employee.state -eq "False") {
         Write-output "HOI"
