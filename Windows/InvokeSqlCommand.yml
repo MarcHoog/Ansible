@@ -37,8 +37,7 @@
  
         Write-Host $password
 
-        New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Path "CN=Users,DC=peeps,DC=piepers" -Company $employee.company -City $employee.city -Enabled $False
-        $id = $employee.ID -AccountPassword = $password
+        New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Path "CN=Users,DC=peeps,DC=piepers" -Company $employee.company -City $employee.city -Enabled $False -AccountPassword = $password
         Invoke-Sqlcmd -Query "UPDATE Challenge.dbo.user2 SET creation = 0 WHERE ID = $($employee.ID) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.password (ID,Username,Password) VALUES ($($employee.ID),$($employee.Name),$($password)) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         }
