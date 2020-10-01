@@ -46,7 +46,7 @@
         Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.username)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         }
         
-        ElseIf ($employee.creation -eq "False" -And $employee.state -eq "False")
+        if ($employee.creation -eq "False" -And $employee.state -eq "False")
         {
         write-output "hoi"  
         Remove-ADUser -Identity $($employee.username)
