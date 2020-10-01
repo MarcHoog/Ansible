@@ -10,6 +10,7 @@
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"        
         foreach($employee in $data)
         {
+        write-output $employee
         if ($employee.creation -eq "True" -And $employee.state -eq "True") 
         {
         Write-output "Deze statemennt was TRUE en ik ga nu " + $employee.username  + " aanmaken"  
@@ -19,7 +20,8 @@
         $private:ofs=""
         return [String]$characters[$random]
         }
-        function Scramble-String([string]$inputString){     
+        function Scramble-String([string]$inputString)
+        {     
         $characterArray = $inputString.ToCharArray()   
         $scrambledStringArray = $characterArray | Get-Random -Count $characterArray.Length     
         $outputString = -join $scrambledStringArray
@@ -43,8 +45,10 @@
         Invoke-Sqlcmd -Query "UPDATE Challenge.dbo.user2 SET creation = 0 WHERE ID = $($employee.ID) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.username)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         }
-        ElseIf ($employee.creation -eq "False" -And $employee.state -eq "False") {
+        
+        ElseIf ($employee.creation -eq "False" -And $employee.state -eq "False")
+        {
         write-output "hoi"  
         Remove-ADUser -Identity $($employee.username)
-         } 
+        } 
         } 
