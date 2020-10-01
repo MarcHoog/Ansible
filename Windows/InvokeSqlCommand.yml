@@ -45,10 +45,11 @@
         Invoke-Sqlcmd -Query "UPDATE Challenge.dbo.user2 SET creation = 0 WHERE ID = $($employee.ID) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.username)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         }
+        }
         
         if ($employee.creation -eq "False" -And $employee.state -eq "False")
         {
         write-output "hoi"  
-        Remove-ADUser -Identity $($employee.username)
+        Remove-ADUser -Identity $employee.username
         } 
         } 
