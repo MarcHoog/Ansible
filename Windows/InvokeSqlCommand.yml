@@ -54,7 +54,7 @@
         {
         write-output $employee
 
-        if ($employee.state -eq "False")
+        if ($employee.creation -eq "False")
         {
         write-output "Dit is Kut en Raar"
 
