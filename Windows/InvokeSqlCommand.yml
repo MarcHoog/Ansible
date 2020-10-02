@@ -52,13 +52,8 @@
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"        
         foreach($employee in $data)
         {
-        write-output $employee
-
-        if ($employee.creation -eq "False")
+        If ($employee.creation -eq "False") 
         {
-        write-output "Dit is Kut en Raar"
-
-        Remove-ADUser -Identity $employee.username
-
+        Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"  
         }
-        }
+        } 
