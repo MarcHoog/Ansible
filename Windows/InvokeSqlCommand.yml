@@ -53,5 +53,5 @@
     - name: Delete Disabled users
       win_shell: |
         $users = Get-ADUser -Filter * | where {($_.enabled -eq $false)}
-        Write-Output "We are deleting the user now after 90 days"
+        Write-Output "We are deleting $users now after 90 days"
         Write-Output "pIEP POOP BAB IK BEN ROBOT" 
