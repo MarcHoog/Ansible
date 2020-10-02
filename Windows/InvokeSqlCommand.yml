@@ -11,16 +11,8 @@
         foreach($employee in $data)
         {
         write-output $employee
-
-        if ($employee.state -eq "True")
-        {
-        write-output "Dit is Kut en Raar"
-
-        Remove-ADUser -Identity $employee.username
-
-        }
         
-        ElseIf ($employee.creation -eq "False") 
+        If ($employee.creation -eq "True") 
         {
         Write-output "Deze statemennt was TRUE en ik ga nu " + $employee.username  + " aanmaken"  
         function Get-RandomCharacters($length, $characters) 
@@ -54,4 +46,19 @@
         Invoke-Sqlcmd -Query "UPDATE Challenge.dbo.user2 SET creation = 0 WHERE ID = $($employee.ID) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.username)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         }
-        } 
+        }
+    - name: Delete User 
+      win_shell: |
+        $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"        
+        foreach($employee in $data)
+        {
+        write-output $employee
+
+        if ($employee.state -eq "False")
+        {
+        write-output "Dit is Kut en Raar"
+
+        Remove-ADUser -Identity $employee.username
+
+        }
+        }
