@@ -47,5 +47,6 @@
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2] WHERE State = 0" -ServerInstance "srv-winess19"        
         foreach($employee in $data)
         {
-        Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"  
+        Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"
+        Disable-ADAccount -Identity $employee.username  
         } 
