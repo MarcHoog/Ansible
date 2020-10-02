@@ -10,8 +10,6 @@
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2] WHERE Creation = 1" -ServerInstance "srv-winess19"        
         foreach($employee in $data)
         {
-        write-output $employee
-        
         Write-output "Deze statemennt was TRUE en ik ga nu " + $employee.username  + " aanmaken"  
         function Get-RandomCharacters($length, $characters) 
         {
