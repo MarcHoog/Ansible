@@ -42,11 +42,16 @@
         Invoke-Sqlcmd -Query "UPDATE Challenge.dbo.user2 SET creation = 0 WHERE ID = $($employee.ID) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.username)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         }
-    - name: Delete User 
+    - name: Disable Users 
       win_shell: |
         $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2] WHERE State = 0" -ServerInstance "srv-winess19"        
         foreach($employee in $data)
         {
         Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"
         Disable-ADAccount -Identity $employee.username  
-        } 
+        }
+    - name: Delete Disabled users
+      win_shell: |
+        $users = Get-ADUser -Filter * | where {($_.enabled -eq $false)}
+        Write-Output "We are deleting the user now after 90 days"
+        Write-Output "pIEP POOP BAB IK BEN ROBOT" 
