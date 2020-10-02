@@ -49,7 +49,7 @@
         }
     - name: Delete User 
       win_shell: |
-        $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2] WHERE Creation = 0" -ServerInstance "srv-winess19"        
+        $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2] WHERE State = 0" -ServerInstance "srv-winess19"        
         foreach($employee in $data)
         {
         Write-output "Deze statemennt was False en ik ga nu " + $employee.username  + " opblazen"  
