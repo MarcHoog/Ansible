@@ -7,13 +7,11 @@
   tasks:
     - name: Create user
       win_shell: |
-        $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2]" -ServerInstance "srv-winess19"        
+        $data = Invoke-Sqlcmd -Query "SELECT * FROM [Challenge].[dbo].[user2] WHERE Creation = 1" -ServerInstance "srv-winess19"        
         foreach($employee in $data)
         {
         write-output $employee
         
-        If ($employee.creation -eq "True") 
-        {
         Write-output "Deze statemennt was TRUE en ik ga nu " + $employee.username  + " aanmaken"  
         function Get-RandomCharacters($length, $characters) 
         {
@@ -45,7 +43,6 @@
         New-ADUser -Name $employee.username -GivenName $employee.firstname -Surname $employee.lastname -SamAccountName $employee.username -Path "CN=Users,DC=peeps,DC=piepers" -Company $employee.company -City $employee.city -AccountPassword $SecurePassword -Enabled $True
         Invoke-Sqlcmd -Query "UPDATE Challenge.dbo.user2 SET creation = 0 WHERE ID = $($employee.ID) " -ServerInstance "srv-winess19"  -OutputSqlErrors $True
         Invoke-Sqlcmd -Query "INSERT INTO Challenge.dbo.passwords (ID,Username,Password) VALUES ($($employee.ID), '$($employee.username)', '$($password)');" -ServerInstance "srv-winess19"  -OutputSqlErrors $True
-        }
         }
     - name: Delete User 
       win_shell: |
