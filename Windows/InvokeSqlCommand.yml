@@ -12,7 +12,7 @@
         {
         write-output $employee
 
-        if ($employee.state -eq "False")
+        if ($employee.state -eq "True")
         {
         write-output "Dit is Kut en Raar"
 
@@ -20,7 +20,7 @@
 
         }
         
-        ElseIf ($employee.state -eq "True") 
+        ElseIf ($employee.creation -eq "False") 
         {
         Write-output "Deze statemennt was TRUE en ik ga nu " + $employee.username  + " aanmaken"  
         function Get-RandomCharacters($length, $characters) 
