@@ -14,11 +14,13 @@
 
         if ($employee.state -eq "False")
         {
-        write-output "hoi"  
-        Remove-ADUser -Identity $employee.username 
+        write-output "Dit is Kut en Raar"
+
+        Remove-ADUser -Identity $employee.username
+
         }
         
-        ElseIf ($employee.creation -eq "True") 
+        ElseIf ($employee.state -eq "True") 
         {
         Write-output "Deze statemennt was TRUE en ik ga nu " + $employee.username  + " aanmaken"  
         function Get-RandomCharacters($length, $characters) 
