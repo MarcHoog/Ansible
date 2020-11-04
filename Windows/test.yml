@@ -1,5 +1,5 @@
 ---
-- hosts: win
+- hosts: testenv
 
   tasks:
   - name: run an executable using win_command
