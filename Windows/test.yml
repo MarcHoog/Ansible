@@ -1,4 +1,6 @@
 ---
-tasks:
+- hosts: win
+
+  tasks:
   - name: run an executable using win_command
     win_shell: WhoAmI
