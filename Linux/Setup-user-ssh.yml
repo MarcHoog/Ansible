@@ -1,7 +1,7 @@
 ---
 - hosts: all
   vars:
-    - ansiblebot_password: '{{LPassword}}'
+    - ansible_password: '{{LPassword}}'
   gather_facts: no
   remote_user: sysop
   become: true
@@ -10,4 +10,4 @@
       user:
         name: ansible-op
           shell: /bin/bash
-          password: "{{LPassword}}"
+          password: "{{ ansible_password }}"
