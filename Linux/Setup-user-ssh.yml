@@ -1,4 +1,4 @@
----
+  ---
 - hosts: all
   vars:
     - ansible_password: "Doekoe2020!"
@@ -7,16 +7,36 @@
   become: yes
   tasks:
 
-    - name: Creating the user ansible-op
-      user:
-        name:  "ansible-op"
+    - name: Disable Password Authentication for all users
+      lineinfile:
+          path=/etc/ssh/sshd_config
+          regexp='^PasswordAuthentication'
+          line="PasswordAuthentication no"
+          state=present
+          backup=yes
 
-    - name: Add ansiblebot user to the sudoers
-      copy:
-        dest:  "/etc/sudoers.d/ansible-op"
-        content:  "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
+    - name: Enable Password Authenticaiton for Sysop Users
+      blockinfile: |
+      path=/etc/ssh/sshd_config
+      insertafter='^PasswordAuthentication'
+      content="Match sysop
+          PasswordAuthentication yes"
+      state=present 
+      
 
-    - name: Deploy SSH Key to remote Machine
-      authorized_key:  user=ansible-op
-                       key="{{ public_key }}"
-                       state=present
+   - name: Disable Root Login
+      lineinfile:
+          path=/etc/ssh/sshd_config
+          regexp='^PermitRootLogin'
+          line="PermitRootLogin no"
+          state=present
+          backup=yes
+      notify:
+        - restart ssh
+        
+
+   handlers:
+   - name: restart ssh
+       service:
+        name=sshd
+        state=restarted
