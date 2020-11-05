@@ -7,10 +7,6 @@
   become: yes
   tasks:
 
-    - name: Creating the user ansible-op
-      user:
-        name:  "ansible-op"
-
     - name: Add ansiblebot user to the sudoers
       copy:
         dest:  "/etc/sudoers.d/ansible-op"
