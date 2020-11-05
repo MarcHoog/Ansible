@@ -31,9 +31,9 @@
     - name: Enable Password Authenticaiton for Sysop Users
       blockinfile: 
         path: /etc/ssh/sshd_config
-        insertafter: '^PasswordAuthentication'
+        insertbefore: '^PasswordAuthentication'
         block: | 
-          match sysop
+          match user sysop
             PasswordAuthentication yes
         state: present
         backup: yes 
