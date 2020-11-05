@@ -2,6 +2,7 @@
 - hosts: all
   vars:
     - ansible_password: "Doekoe2020!"
+    - public_key: "{{lookup('file', '/home/ansible-op/.ssh/id_rsa.pub')}}"
   gather_facts: no
   become: true
   tasks:
@@ -13,6 +14,6 @@
         dest: "/etc/sudoers.d/ansible-op"
         content: "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
     - name: Deploy SSH Key to remote Machine
-        authorized_key: user=ansible-op
-                        key="{{ lookup('file', '/home/ansible-op/.ssh/id_rsa.pub') }}"
-                        state=present
+        authorized_key: user= ansible-op
+                        key= "{{public_key}}""
+                        state= present
