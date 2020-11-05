@@ -18,5 +18,5 @@
 
     - name: Deploy SSH Key to remote Machine
       authorized_key:  user=ansible-op
-                       key= "{{ public_key }}"
+                       key="{{ public_key }}"
                        state=present
