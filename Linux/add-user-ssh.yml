@@ -2,8 +2,8 @@
 ---
 -
   - hosts: all
-   vars:
-     - ansiblebot_password: 'Ansible123!'
+    vars:
+      - ansiblebot_password: '{{Linux-Password}}'
    gather_facts: no
    remote_user: sysop
    become: true
