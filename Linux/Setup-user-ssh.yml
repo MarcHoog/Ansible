@@ -4,7 +4,7 @@
     - ansible_password: "Doekoe2020!"
     - public_key: "{{ lookup('file', '/home/ansible-op/.ssh/id_rsa.pub') }}"
   gather_facts: no
-  become: yes
+  become: True
   become_method: su
   tasks:
 
