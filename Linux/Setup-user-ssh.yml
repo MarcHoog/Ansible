@@ -9,14 +9,14 @@
 
     - name: Creating the user ansible-op
       user:
-        name: "ansible-op"
+        name:  "ansible-op"
 
     - name: Add ansiblebot user to the sudoers
       copy:
-        dest: "/etc/sudoers.d/ansible-op"
-        content: "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
+        dest:  "/etc/sudoers.d/ansible-op"
+        content:  "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
 
     - name: Deploy SSH Key to remote Machine
-        ansible.posix.authorized_key: user= ansible-op
-                                      key= "{{ public_key }}"
-                                      state= present
+        authorized_key:  user= ansible-op
+                         key= "{{ public_key }}"
+                         state= present
