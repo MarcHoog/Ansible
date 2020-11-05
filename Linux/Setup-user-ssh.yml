@@ -45,9 +45,3 @@
         line: "PermitRootLogin no"
         state: present
         backup: yes
-      notify:
-        - Reboot
-        
-  handlers:
-    - name: Reboot
-      reboot:
