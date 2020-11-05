@@ -17,6 +17,6 @@
         content:  "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
 
     - name: Deploy SSH Key to remote Machine
-        authorized_key:  user= ansible-op
-                         key= "{{ public_key }}"
-                         state= present
+      authorized_key:  user= ansible-op
+                       key= "{{ public_key }}"
+                       state= present
