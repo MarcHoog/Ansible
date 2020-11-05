@@ -1,3 +1,18 @@
+
+Created   - 5 novemeber
+Name      - Marc Hoogendoorn
+
+Pre work
+  sudo -i
+  useradd -m -s /bin/bash sysop
+  passwd Doekoe2020!
+  echo -e ‘sysop\tALL=(ALL)\tNOPASSWD:\tALL’ > /etc/sudoers.d/sysop
+
+  sudo -i
+  useradd -m -s /bin/bash Test123
+  passwd Test123
+
+
 ---
 - hosts: all
   vars:
@@ -31,7 +46,7 @@
     - name: Enable Password Authenticaiton for Sysop Users
       blockinfile: 
         path: /etc/ssh/sshd_config
-        insertbefore: '^PasswordAuthentication'
+        insertafter: '^PasswordAuthentication'
         block: | 
           match user sysop
             PasswordAuthentication yes
