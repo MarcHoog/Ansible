@@ -9,28 +9,30 @@
 
     - name: Disable Password Authentication for all users
       lineinfile:
-          path=/etc/ssh/sshd_config
-          regexp='^PasswordAuthentication'
-          line="PasswordAuthentication no"
-          state=present
-          backup=yes
+          path: /etc/ssh/sshd_config
+          regexp: '^PasswordAuthentication'
+          line: "PasswordAuthentication no"
+          state: present
+          backup: yes
 
     - name: Enable Password Authenticaiton for Sysop Users
-      blockinfile: |
-      path=/etc/ssh/sshd_config
-      insertafter='^PasswordAuthentication'
-      content="Match sysop
-          PasswordAuthentication yes"
-      state=present 
+      blockinfile: 
+        path: /etc/ssh/sshd_config
+        insertafter: '^PasswordAuthentication'
+        block: | 
+          Match sysop
+            PasswordAuthentication yes
+        state: present
+        backup: yes 
       
 
    - name: Disable Root Login
       lineinfile:
-          path=/etc/ssh/sshd_config
-          regexp='^PermitRootLogin'
-          line="PermitRootLogin no"
-          state=present
-          backup=yes
+          path: /etc/ssh/sshd_config
+          regexp: '^PermitRootLogin'
+          line: "PermitRootLogin no"
+          state: present
+          backup: yes
       notify:
         - restart ssh
         
