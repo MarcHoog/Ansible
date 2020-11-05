@@ -50,4 +50,4 @@
         
   handlers:
     - name: Reboot
-        reboot:
+      reboot:
