@@ -32,10 +32,10 @@
         state: present
         backup: yes
       notify:
-        - restart ssh
+        - restart-ssh
         
-- handlers:
-  - name: restart ssh
-      service:
+  handlers:
+    - name: Restart apache
+      ansible.builtin.service:
         name: sshd
         state: restarted
