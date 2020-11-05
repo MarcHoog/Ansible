@@ -50,6 +50,4 @@
         
   handlers:
     - name: Restart ssh
-      service:
-        name: sshd
-        state: restarted
+      command: service ssh restart
