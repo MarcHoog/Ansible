@@ -46,8 +46,8 @@
         state: present
         backup: yes
       notify:
-        - Restart ssh
+        - Reboot
         
   handlers:
-    - name: Restart ssh
-      command: service ssh restart
+    - name: Reboot
+        reboot:
