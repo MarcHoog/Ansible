@@ -33,7 +33,7 @@
         path: /etc/ssh/sshd_config
         insertafter: '^PasswordAuthentication'
         block: | 
-          Match sysop
+          match sysop
             PasswordAuthentication yes
         state: present
         backup: yes 
@@ -45,3 +45,11 @@
         line: "PermitRootLogin no"
         state: present
         backup: yes
+      notify:
+        - Restart ssh
+        
+  handlers:
+    - name: Restart ssh
+      service:
+        name: sshd
+        state: restarted
