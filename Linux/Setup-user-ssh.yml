@@ -1,18 +1,15 @@
-"
-Created   - 5 novemeber
-Name      - Marc Hoogendoorn
+#   Created   - 5 novemeber
+#   Name      - Marc Hoogendoorn
 
-Pre work
-  sudo -i
-  useradd -m -s /bin/bash sysop
-  passwd Doekoe2020!
-  echo -e ‘sysop\tALL=(ALL)\tNOPASSWD:\tALL’ > /etc/sudoers.d/sysop
+#   Pre work
+#   sudo -i
+#   useradd -m -s /bin/bash sysop
+#   passwd Doekoe2020!
+#   echo -e ‘sysop\tALL=(ALL)\tNOPASSWD:\tALL’ > /etc/sudoers.d/sysop
 
-  sudo -i
-  useradd -m -s /bin/bash Test123
-  passwd Test123
-"
-
+#   sudo -i
+#   useradd -m -s /bin/bash Test123
+#   passwd Test123
 ---
 - hosts: all
   vars:
