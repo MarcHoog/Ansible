@@ -1,7 +1,6 @@
 ---
 - hosts: all
   vars:
-    - ansible_password: "Doekoe2020!"
     - public_key: "{{ lookup('file', '/home/ansible-op/.ssh/id_rsa.pub') }}"
   gather_facts: no
   become: yes
@@ -35,7 +34,7 @@
       notify:
         - restart ssh
         
-handlers:
+- handlers:
   - name: restart ssh
       service:
       name: sshd
