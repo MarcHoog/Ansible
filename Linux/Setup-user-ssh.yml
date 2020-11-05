@@ -6,8 +6,6 @@
   remote_user: sysop
   become: true
   tasks:
-    - name: Add a new user named ansible-op
+    - name: Creating user and adding him to web-devevelopers
       user:
-        name: ansible-op
-          shell: /bin/bash
-          password: "{{ ansible_password }}"
+        name: "Ansible-op"
