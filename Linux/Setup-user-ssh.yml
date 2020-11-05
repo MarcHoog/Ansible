@@ -1,13 +1,13 @@
 ---
-  - hosts: all
-    vars:
-      - ansiblebot_password: '{{LPassword}}'
-   gather_facts: no
-   remote_user: sysop
-   become: true
-   tasks:
-   - name: Add a new user named ansible-op
+- hosts: all
+  vars:
+    - ansiblebot_password: '{{LPassword}}'
+  gather_facts: no
+  remote_user: sysop
+  become: true
+  tasks:
+    - name: Add a new user named ansible-op
       user:
         name: ansible-op
-           shell: /bin/bash
-           password: "{{LPassword}}"
+          shell: /bin/bash
+          password: "{{LPassword}}"
