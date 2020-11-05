@@ -6,6 +6,20 @@
   become: yes
   tasks:
 
+    - name: Creating the user ansible-op
+      user:
+        name:  "ansible-op"
+
+    - name: Add ansible-op user to the sudoers
+      copy:
+        dest:  "/etc/sudoers.d/ansible-op"
+        content:  "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
+
+    - name: Deploy SSH Key to remote Machine
+      authorized_key:  user=ansible-op
+                       key="{{ public_key }}"
+                       state=present
+
     - name: Disable Password Authentication for all users
       lineinfile:
           path: /etc/ssh/sshd_config
