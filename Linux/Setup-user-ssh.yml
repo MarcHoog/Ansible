@@ -2,11 +2,10 @@
 - hosts: all
   vars:
     - ansible_password: "Doekoe2020!"
-    - public_key: "{{lookup('file', '/home/ansible-op/.ssh/id_rsa.pub')}}"
+    - public_key: "{{ lookup('file', '/home/ansible-op/.ssh/id_rsa.pub') }}"
   gather_facts: no
   become: yes
-  become_user: nobody
-  become_flags: '--ask-become-pass, -K' 
+  become_method: su
   tasks:
 
     - name: Creating the user ansible-op
