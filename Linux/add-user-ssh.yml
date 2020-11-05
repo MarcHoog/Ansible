@@ -14,8 +14,8 @@
            password: "{{Linux-Password}}"
    - name: Add ansiblebot user to the sudoers
       copy:
-        dest: "/etc/sudoers.d/ansiblebot"
-        content: "ansiblebot  ALL=(ALL)  NOPASSWD: ALL"
+        dest: "/etc/sudoers.d/ansible-op"
+        content: "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
    - name: Deploy SSH Key
       authorized_key: user=ansiblebot
                       key="{{ lookup('file', '/home/ansiblebot/.ssh/id_rsa.pub') }}"

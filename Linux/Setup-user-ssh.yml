@@ -1,11 +1,18 @@
 ---
 - hosts: all
   vars:
-    - ansible_password: '{{LPassword}}'
+    - ansible_password: "Doekoe2020!"
   gather_facts: no
-  remote_user: sysop
   become: true
   tasks:
-    - name: Creating user and adding him to web-devevelopers
+    - name: Creating the user ansible-op
       user:
-        name: "Ansible-op"
+        name: "ansible-op"
+   - name: Add ansiblebot user to the sudoers
+      copy:
+        dest: "/etc/sudoers.d/ansible-op"
+        content: "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
+    - name: Deploy SSH Key to remote Machine
+        authorized_key: user=ansible-op
+                        key="{{ lookup('file', '/home/ansible-op/.ssh/id_rsa.pub') }}"
+                        state=present
