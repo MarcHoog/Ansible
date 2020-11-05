@@ -1,12 +1,17 @@
 #   Created   - 5 novemeber
 #   Name      - Marc Hoogendoorn
 
+
+
 #   Pre work
+
+# If there is No user yet called sysop
 #   sudo -i
 #   useradd -m -s /bin/bash sysop
 #   passwd Doekoe2020!
 #   echo -e ‘sysop\tALL=(ALL)\tNOPASSWD:\tALL’ > /etc/sudoers.d/sysop
 
+# Creates a simple user to Show to teacher
 #   sudo -i
 #   useradd -m -s /bin/bash Test123
 #   passwd Test123
