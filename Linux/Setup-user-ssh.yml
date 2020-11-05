@@ -24,15 +24,14 @@
             PasswordAuthentication yes
         state: present
         backup: yes 
-      
 
-   - name: Disable Root Login
+    - name: Disable Root Login
       lineinfile:
-          path: /etc/ssh/sshd_config
-          regexp: '^PermitRootLogin'
-          line: "PermitRootLogin no"
-          state: present
-          backup: yes
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: "PermitRootLogin no"
+        state: present
+        backup: yes
       notify:
         - restart ssh
         
