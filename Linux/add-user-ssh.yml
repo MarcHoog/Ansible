@@ -1,6 +1,5 @@
 #add user ssh to the key thingie idk really what this does but we will check
 ---
--
   - hosts: all
     vars:
       - ansiblebot_password: '{{Linux-Password}}'
@@ -8,11 +7,11 @@
    remote_user: sysop
    become: true
    tasks:
-   - name: Add a new user named ansiblebot
+   - name: Add a new user named ansible-op
       user:
-        name: ansiblebot
+        name: ansible-op
            shell: /bin/bash
-           password: "{{ ansiblebot_password }}"
+           password: "{{Linux-Password}}"
    - name: Add ansiblebot user to the sudoers
       copy:
         dest: "/etc/sudoers.d/ansiblebot"
