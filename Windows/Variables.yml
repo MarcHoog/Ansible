@@ -9,14 +9,9 @@
 
     - name: Get Variable1
       win_shell: |
-        whoami 
+        WhoAmI 
       register: Variable1
 
-    - name: type that shit
-      win_shell: |
-        param(
-        [string]$Name = $arg[0]
-        )
 
-        write $Name
-      stdin: Variable1
+    - debug: var=Variable1
+      verbosity: 4
