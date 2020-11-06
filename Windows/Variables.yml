@@ -29,4 +29,5 @@
            write  output $Name
           }
       win_command: Get-something
-        arg: whoami_result  
+      arg: 
+        Name: whoami_result  
