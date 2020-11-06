@@ -1,8 +1,6 @@
 ### Oefening about passing through Powershell Variables Between Playbook tasks
-Yaml working with different Varables 
-Passing Variables through Different Tasks within a playthrough
-
-
+#Yaml working with different Varables 
+#Passing Variables through Different Tasks within a playthrough
 ---
   - name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
     host: win-testenv1.TESTENV.DOEKOE.LOCAL
