@@ -10,4 +10,7 @@
     - name: Get Variable1
       win_shell: |
         whoami
-      register: Variable1
+      register: {{ Variable1 }}
+
+    - name: What is Variable1
+      debug: msg="it is {{ Variable1 }}"
