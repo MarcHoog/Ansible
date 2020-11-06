@@ -9,7 +9,7 @@
 
     - name: Get Variable1
       win_shell: |
-        WhoAmI 
+        print "hoi"
       register: Variable1
 
     - name: show variable
