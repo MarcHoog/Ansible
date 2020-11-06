@@ -13,4 +13,4 @@
       register: Variable1
 
     - name: What is Variable1
-      debug: "Variable1"
+      debug: "{{ Variable1 }}"
