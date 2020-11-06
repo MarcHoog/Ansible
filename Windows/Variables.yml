@@ -2,13 +2,13 @@
 #Yaml working with different Varables 
 #Passing Variables through Different Tasks within a playthrough
 ---
-  - name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
-    host: win-testenv1.TESTENV.DOEKOE.LOCAL
-    gather_facts: no
-    tasks:
+- name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
+  host: win-testenv1.TESTENV.DOEKOE.LOCAL
+  gather_facts: no
+  tasks:
 
-      - name: Get Variable1
-          set_fact:
-            Variable1:
-              win_command: whoami
-                register: {{ Variable1 }}
+    - name: Get Variable1
+        set_fact:
+          Variable1:
+            win_command: whoami
+              register: {{ Variable1 }}
