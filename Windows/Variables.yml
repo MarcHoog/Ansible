@@ -9,9 +9,9 @@
 
     - name: Get Variable1
       win_shell: |
-        WhoAmI 
+        Get-ADOrganizationalUnit -Filter 'Name -like "*"' | Format-Table Name, DistinguishedName -A 
       register: Variable1
 
     - debug:
-        var: result
+        var: Variable1
         verbosity: 2
