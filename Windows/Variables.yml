@@ -16,7 +16,7 @@
       debug:
         var: whoami_result
         verbosity: 0
-        
+
     - name: Do something with Variable
       win_shell: |
         function Get-Something
