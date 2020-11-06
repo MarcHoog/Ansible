@@ -19,13 +19,13 @@
 
     - name: Do something with Variable
       win_shell: |
-        function Get-Something
-        {
-        Param
-         (
-           [Parameter(Mandatory=$true, Position=0)]
-           [string] $Name
-         )
-         write  output $Name
-        } 
-      stdin: whoami_result 
+          function Get-Something
+          {
+          Param
+           (
+             [Parameter(Mandatory=$true, Position=0)]
+             [string] $Name
+           )
+           write  output $Name
+          } 
+        stdin: whoami_result 
