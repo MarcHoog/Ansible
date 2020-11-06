@@ -7,7 +7,7 @@
   tasks:
 
   - name: run an executable using win_command
-    win_command: whoami
+    win_command: ping 8.8.8.8
       register: Variable1
 
   - name: show variable
