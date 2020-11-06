@@ -12,6 +12,7 @@
         WhoAmI 
       register: Variable1
 
-
-    - debug: var=Variable1
-      verbosity: 4
+    - name: show variable
+      debug: 
+        var: Variable1
+        verbosity: 4
