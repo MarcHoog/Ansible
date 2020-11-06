@@ -1,6 +1,10 @@
 ### Oefening about passing through Powershell Variables Between Playbook tasks
 #Yaml working with different Varables 
 #Passing Variables through Different Tasks within a playthrough
+# Dit lukte niet echt maar Daarom zijn we naar de volgende stap gegaan in het process
+
+# EN dat is gwn simpel en da gaan wij gwnd oen like that
+# wowie 
 ---
 - name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
   hosts: win-testenv1.TESTENV.DOEKOE.LOCAL
@@ -17,19 +21,7 @@
         var: whoami_result
         verbosity: 0
 
-    - name: Do something with Variable
-      win_shell: |
-          function Get-Something
-          {
-          Param
-           (
-             [Parameter(Mandatory=$true, Position=0)]
-             [string] $Name
-           )
-           write  output $Name
-          }   
-
-    - name: Do really something with that shit
+    - name: Throw in a fucntion
       win_shell: |
           function Get-Something
           {
