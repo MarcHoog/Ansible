@@ -27,9 +27,16 @@
              [string] $Name
            )
            write  output $Name
-          }
+          }   
 
     - name: Do really something with that shit
-      win_command: Get-something
-      arg: 
-        Name: whoami_result  
+      win_shell: |
+          function Get-Something
+          {
+          Param
+           (
+             [Parameter(Mandatory=$true, Position=0)]
+             [string] $Name
+           )
+           write  output $Name
+          }   
