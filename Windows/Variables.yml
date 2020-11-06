@@ -4,8 +4,15 @@
 ---
 - name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
   hosts: win-testenv1.TESTENV.DOEKOE.LOCAL
+  gather_facts: yes
   tasks:
-    - name: Save the result of 'whoami' in 'whoami_out'
-      ansible.windows.win_command: whoami
-      register: whoami_out
 
+    - name: Get Variable1
+      win_shell: |
+        WhoAmI 
+      register: Variable1
+
+    - name: What is Variable1
+      debug:
+        msg: Variable1
+    
