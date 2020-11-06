@@ -28,4 +28,4 @@
            )
            write  output $Name
           } 
-        stdin: whoami_result 
+      stdin: whoami_result 
