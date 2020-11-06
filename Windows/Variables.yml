@@ -28,6 +28,8 @@
            )
            write  output $Name
           }
+
+    - name: Do really something with that shit
       win_command: Get-something
       arg: 
         Name: whoami_result  
