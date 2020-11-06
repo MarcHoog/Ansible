@@ -9,10 +9,10 @@
 
     - name: Get Variable1
       win_shell: |
-        WhoAmI 
-      register: Variable1
+        whoami 
+      register: whoami_result
 
     - name: What is Variable1
       debug:
-        msg: Variable1
+        var: whoami_result
     
