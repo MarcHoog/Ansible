@@ -9,9 +9,14 @@
 
     - name: Get Variable1
       win_shell: |
-        Get-ADOrganizationalUnit -Filter 'Name -like "*"' | Format-Table Name, DistinguishedName -A 
+        whoami 
       register: Variable1
 
-    - debug:
-        var: Variable1
-        verbosity: 2
+    - name: type that shit
+      win_shell: |
+        param(
+        [string]$Name = $arg[0]
+        )
+
+        write $Name
+      stdin: Variable1
