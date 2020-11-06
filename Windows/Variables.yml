@@ -15,4 +15,5 @@
     - name: What is Variable1
       debug:
         var: whoami_result
+        verbosity: 1
     
