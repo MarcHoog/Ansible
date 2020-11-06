@@ -3,7 +3,7 @@
 #Passing Variables through Different Tasks within a playthrough
 ---
 - name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
-  host: win-testenv1.TESTENV.DOEKOE.LOCAL
+  hosts: win-testenv1.TESTENV.DOEKOE.LOCAL
   gather_facts: no
   tasks:
 
