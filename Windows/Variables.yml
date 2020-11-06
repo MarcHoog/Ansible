@@ -10,5 +10,5 @@
     - name: Get Variable1
         set_fact:
           Variable1:
-            wi  n_command: whoami
-              register: {{ Variable1 }}
+            win_command: whoami
+              register: Variable1
