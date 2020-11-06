@@ -27,5 +27,6 @@
              [string] $Name
            )
            write  output $Name
-          } 
-      stdin: whoami_result 
+          }
+      win_command: Get-something
+        arg: whoami_result  
