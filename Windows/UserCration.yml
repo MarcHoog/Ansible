@@ -1,10 +1,15 @@
 #trying to invoke powershell crap in ansible so that we can do all kinds of awesome things 
 # We enjoy doing kinda awesome things like voquein
+
+# Even morgen kijken of het mogelijk is om data op te laten slaan tussen de dingen heen waarschijnlijk wel
 ---
-- name: invoke SQL powershellex
+- name: Onboarding and offboarding of personal
   hosts: all
-  connection: winrm
   tasks:
+
+    - name: Gathering SQL data for users that need to be Created
+
+
     - name: Creating users
       win_shell: |
         $data = Invoke-Sqlcmd -Query "SELECT * WHERE creation = True FROM [Testenv].[dbo].[user2]" -ServerInstance "srv-winess19"
@@ -28,6 +33,11 @@
           -City $employee.city `
           -Enabled $False
         }
+
+    - name: Creating User Home Folder
+
+    - name: Gatherng SQL data for user that have to be Deleted
+
     - name: Disabling users
       win_shell: /
         $data = Invoke-Sqlcmd -Query "SELECT * WHERE creation = FALSE FROM [Testenv].[dbo].[user2]" -ServerInstance "srv-winess19"
