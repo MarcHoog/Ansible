@@ -1,14 +1,67 @@
-### Oefening about passing through Powershell Variables Between Playbook tasks
-#Yaml working with different Varables 
-#Passing Variables through Different Tasks within a playthrough
+#   Pre work
+
+# If there is No user yet called sysop
+#   sudo -i
+#   useradd -m -s /bin/bash sysop
+#   passwd Doekoe2020!
+#   echo -e ‘sysop\tALL=(ALL)\tNOPASSWD:\tALL’ > /etc/sudoers.d/sysop
+
+# Creates a simple user to Show to teacher
+#   sudo -i
+#   useradd -m -s /bin/bash Test123
+#   passwd Test123
 ---
-- name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
-  host: win-testenv1.TESTENV.DOEKOE.LOCAL
+- hosts: all
+  vars:
+    - public_key: "{{ lookup('file', '/home/ansible-op/.ssh/id_rsa.pub') }}"
   gather_facts: no
+  become: yes
   tasks:
 
-    - name: Get Variable1
-        set_fact:
-          Variable1:
-            win_command: whoami
-              register: {{ Variable1 }}
+    - name: Creating the user ansible-op
+      user:
+        name:  "ansible-op"
+
+    - name: Add ansible-op user to the sudoers
+      copy:
+        dest:  "/etc/sudoers.d/ansible-op"
+        content:  "ansible-op  ALL=(ALL)  NOPASSWD: ALL"
+
+    - name: Deploy SSH Key to remote Machine
+      authorized_key:  user=ansible-op
+                       key="{{ public_key }}"
+                       state=present
+
+    - name: Disable Password Authentication for all users
+      lineinfile:
+          path: /etc/ssh/sshd_config
+          regexp: '^PasswordAuthentication'
+          line: "PasswordAuthentication no"
+          state: present
+          backup: yes
+
+    - name: Enable Password Authenticaiton for Sysop Users
+      blockinfile: 
+        path: /etc/ssh/sshd_config
+        insertafter: '^PasswordAuthentication'
+        block: | 
+          match user sysop
+            PasswordAuthentication yes
+        state: present
+        backup: yes 
+
+    - name: Disable Root Login
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: "PermitRootLogin no"
+        state: present
+        backup: yes
+      notify:
+        - Restart ssh
+        
+  handlers:
+    - name: Restart ssh
+      service:
+        name: sshd
+        state: restarted
