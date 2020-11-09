@@ -52,7 +52,7 @@ if($state -eq 'absent'){
         $module.result.msg = "The $membertype : $member; is already a part of the Group: $group"
     }
     else {
-        Add-adGroupMember -identity $groupname -Members $member
+        Add-adGroupMember -identity $groupname -members $member
         $module.result.changed = $true
         $module.result.msg = "The $membertype  : $member; Has been Added to the Group $group"
     }
