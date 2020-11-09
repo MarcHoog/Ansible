@@ -37,7 +37,7 @@ if ($null -eq $memberisuser ){
 $groupisthere = get-adgroup -filter "name -eq '$group'"
 if ($groupisthere){
         
-    $groupname = groupisthere.name 
+    $groupname = $groupisthere.name 
 }
 else{
     $module.FailJson("$group Is not a excisting group in active Directory ")
