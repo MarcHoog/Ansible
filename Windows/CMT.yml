@@ -1,6 +1,6 @@
 ---
 - name: Test Script
-  hosts: win-testenv1.TESTENV.DOEKOE.LOCAL
+  hosts: win-seraphine.DOEKOE.LOCAL
 
   tasks:
   - name: testit
