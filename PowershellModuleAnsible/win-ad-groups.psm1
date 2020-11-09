@@ -1,81 +1,73 @@
-ad-groupMembership {
-    [CmdletBinding()]
-    PARAM (
-        [Parameter(Mandatory=$true)]
-        [ValidateScript({ $_.GetType().FullName -eq 'Ansible.Basic.AnsibleModule' })]
-        $Module,
-    
-        [Parameter(Mandatory=$true)]
-        [String]$State = 'absent',
 
-        [Parameter(Mandatory=$true)]
-        [String[]]$member = $null,
 
-        [Parameter(Mandatory=$true)]
-        [String[]]$group = $null
-    )
+$spec = @{
+    options = @{
+        state = @{ type = "str";    required = $true   }
+        member = @{ type = "str";   required = $true  }
+        group = @{ type = "str";    required = $true  }
+    }
+}
 
-        $result = New-Object psobject;
-        Set-Attr $result "changed" $false;
-        Set-Attr $result "msg" "";
-        
+$module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
-        $state = Get-Attr $params "state" "present"
-        $state = $state.ToString().ToLower()
-        If (($state -ne "present") -and ($state -ne "absent")) {
-            Fail-Json $result.msg "state is '$state'; must be 'present' or 'absent'"
-        }
-        $membertype = 'user'
+$state = $module.Params.state
+$member = $module.Params.member
+$group = $module.Params.group
+
+
+$state = $state.ToString().ToLower()
+If (($state -ne "present") -and ($state -ne "absent")) {
+$module.FailJson("state is '$state'; must be 'present' or 'absent'")
+}
+$membertype = 'user'
     
 
-        $memberisuser = get-aduser -filter {(-name -eq $member)}
-        if ($memberisuser -eq $null){
-            $membertype = 'group'
-            memberisgroup = get-adgroup -filter {(-name -eq $member)}
+$memberisuser = get-aduser -filter {(-name -eq $member)}
+if ($null -eq $memberisuser ){
+    $membertype = 'group'
+    memberisgroup = get-adgroup -filter {(-name -eq $member)}
 
-            if ($memberisgroup -eq $null){
-             Fail-Json $result.msg "$member is not a User Or Group Excisting in Active Directory."
-            }
-        }
+    if ($null -eq $memberisgroup){
+        $module.FailJson("$member is not a User Or Group Excisting in Active Directory.")
+    }
+}
 
  
-        $groupisthere = get-adgroup -filter {(-name - eq $group)}
-        if ($groupisthere){
+$groupisthere = get-adgroup -filter {(-name - eq $group)}
+if ($groupisthere){
         
-            $groupname = groupisthere.name 
-        }
-        else{
-            Fail-Json $result.msg "$group Is not a excisting group in active Directory "
-       }
+    $groupname = groupisthere.name 
+}
+else{
+    $module.FailJson("$group Is not a excisting group in active Directory ")
+}
 
 
-       $groupmembers = get-adgroupmembers -identity $groupname | select-Expandproperty name
+$groupmembers = get-adgroupmembers -identity $groupname | select-Expandproperty name
 
 
-       if($state -eq 'absent'){
-           if($groupmembers -contains $groupname){
-                $result.msg = "The $membertype : $member; is already a part of the Group: $group"
-            }
-            else {
-                Add-adGroupMember -idenentity $member -Members $groupname
-                $result.changed = $true
-                $result.msg = "The $membertype  : $member; Has been Added to the Group $group"
-            }
-        }
-
-        
-       elseif($State -eq 'present'){
-            if($groupmembers -contains $groupname){
-            Remove-adGroupMember -identity $member -members $group
-            $result.changed = $true
-            $result.msg = "The $membertype : $member; Has been removed from the group $group"
-            }
-            else {
-                $result.msg = "The $membertype : $member; Was not part of the Group $group"
-            }
-        }
-
-
-    Exit-json $result;
-
+if($state -eq 'absent'){
+    if($groupmembers -contains $groupname){
+        $module.result.msg = "The $membertype : $member; is already a part of the Group: $group"
     }
+    else {
+        Add-adGroupMember -idenentity $member -Members $groupname
+        $module.result.changed = $true
+        $module.result.msg = "The $membertype  : $member; Has been Added to the Group $group"
+    }
+}
+
+        
+elseif($State -eq 'present'){
+    if($groupmembers -contains $groupname){
+    Remove-adGroupMember -identity $member -members $group
+    $module.result.changed = $true
+    $module.result.msg = "The $membertype : $member; Has been removed from the group $group"
+    }
+    else {
+        $module.result.msg = "The $membertype : $member; Was not part of the Group $group"
+    }
+}
+
+
+$module.Exitjson();
