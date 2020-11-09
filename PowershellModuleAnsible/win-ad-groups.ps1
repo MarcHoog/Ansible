@@ -1,5 +1,4 @@
 #!powershell
-
 #AnsibleRequires -CSharpUtil Ansible.Basic
 
 $spec = @{
@@ -24,10 +23,10 @@ $module.FailJson("state is '$state'; must be 'present' or 'absent'")
 $membertype = 'user'
     
 
-$memberisuser = get-aduser -filter {(-name -eq $member)}
+$memberisuser = get-aduser -filter "name -eq '$member'"
 if ($null -eq $memberisuser ){
     $membertype = 'group'
-    memberisgroup = get-adgroup -filter {(-name -eq $member)}
+    memberisgroup = get-adgroup -filter "name -eq '$member'"
 
     if ($null -eq $memberisgroup){
         $module.FailJson("$member is not a User Or Group Excisting in Active Directory.")
@@ -35,7 +34,7 @@ if ($null -eq $memberisuser ){
 }
 
  
-$groupisthere = get-adgroup -filter {(-name - eq $group)}
+$groupisthere = get-adgroup -filter "name - eq '$group'"
 if ($groupisthere){
         
     $groupname = groupisthere.name 
