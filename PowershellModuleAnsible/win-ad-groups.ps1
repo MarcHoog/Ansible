@@ -52,7 +52,7 @@ if($state -eq 'absent'){
         $module.result.msg = "The $membertype : $member; is already a part of the Group: $group"
     }
     else {
-        Add-adGroupMember -identity $member -Members $groupname
+        Add-adGroupMember -identity $groupname -Members $member
         $module.result.changed = $true
         $module.result.msg = "The $membertype  : $member; Has been Added to the Group $group"
     }
@@ -61,7 +61,7 @@ if($state -eq 'absent'){
         
 elseif($State -eq 'present'){
     if($groupmembers -contains $groupname){
-    Remove-adGroupMember -identity $member -members $group
+    Remove-adGroupMember -identity $groupname -members $member
     $module.result.changed = $true
     $module.result.msg = "The $membertype : $member; Has been removed from the group $group"
     }
