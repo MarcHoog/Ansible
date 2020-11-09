@@ -26,7 +26,7 @@ $membertype = 'user'
 $memberisuser = get-aduser -filter "name -eq '$member'"
 if ($null -eq $memberisuser ){
     $membertype = 'group'
-    memberisgroup = get-adgroup -filter "name -eq '$member'"
+    $memberisgroup = get-adgroup -filter "name -eq '$member'"
 
     if ($null -eq $memberisgroup){
         $module.FailJson("$member is not a User Or Group Excisting in Active Directory.")
