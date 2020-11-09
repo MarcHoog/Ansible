@@ -34,7 +34,7 @@ if ($null -eq $memberisuser ){
 }
 
  
-$groupisthere = get-adgroup -filter "name - eq '$group'"
+$groupisthere = get-adgroup -filter "name -eq '$group'"
 if ($groupisthere){
         
     $groupname = groupisthere.name 
