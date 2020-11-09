@@ -44,7 +44,7 @@ else{
 }
 
 
-$groupmembers = get-adgroupmembers -identity $groupname | select-Expandproperty name
+$groupmembers = get-adgroupmember -identity $groupname | Select-Object -expandproperty name
 
 
 if($state -eq 'absent'){
