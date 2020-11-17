@@ -34,8 +34,8 @@ Store the VM somewhere the Hyper V server Can reach it
 ####################################################CommandsThatIneed################################################################
 To run this shit Straight from tha CLOUD!
 
-$ScriptFromGitHub = <Linkie> 
-Invoke-Expression $($ScriptFromGitHub.Content)
+$ScriptFromGitHub = https://raw.githubusercontent.com/MarcHoog/Ansible/master/Powershell/CreateVMFromImage.ps1 | Invoke-Expression $($ScriptFromGitHub.Content)
+
 
 
 Copy item: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/copy-item?view=powershell-7.1 Example 3
@@ -47,13 +47,13 @@ $ImageName = 'ServerCore2019-gen2'
 $ImageFolder = 'C:\image'
 $VMname = 'swagbug'
 
-$VMmem
-    $VMminmem 
-    $VMmaxmem
+$VMmem = 1GB
+    $VMminmem = 64MB
+    $VMmaxmem = 2GB
 
-$VMGeneration
+$VMGeneration = 2
 
-$VMLocation = 'C:\Users\Public\Documents\Hyper-V\Virtual hard disks\'
+$VMLocation = 'C:\Users\Public\Documents\Hyper-V\Virtual hard disks'
 
 
 #Trim\ From Input links
@@ -76,13 +76,28 @@ if ($null -eq $ImagePath){
     $ImagePath = $ImagePath.FullName 
 }
 
+#Checks if the Image Already Excists if not Copy's the Images to the location the VM will be And gets the Location of the new drive 
+$CheckExcistence = Get-ChildItem -Path $VMLocation | Where-Object {$_.Name -eq "$VMname.vhdx" -or $_.Name -eq "$VMname"} 
+if ($null -ne $CheckExcistence){
+    Write-Host "There is Already an VM with the name $VMname in the location $VMLocation"
+} else {
+
+    Copy-Item "$imagepath" -Destination "$VMLocation\$VMName.vhdx"
+    $VHDpath =  Get-ChildItem -Path $VMLocation | Where-Object {$_.Name -eq "$VMname.vhdx"} 
+    $VHDpath = $VHDPath.Fullname   
+}
 
 
 #Create The VirtualMachine
 try {
     New-VM -Name $VMname -ComputerName $VMname -Generation $VMGeneration   
-    Add-VMHardDiskDrive -VMName Test -Path D:\VHDs\disk1.vhdx
-    Set-VMMemory TestVM -DynamicMemoryEnabled $true -MinimumBytes 64MB -StartupBytes 256MB -MaximumBytes 2GB -Priority 80 -Buffer 25
+    Add-VMHardDiskDrive -VMName $VMname -Path $VHDpath
+    if ($null -eq $VMminmem -and $null -eq $VMmaxmem){
+        Set-VMMemory $VMname -DynamicMemoryEnabled $false -StartupBytes $VMmem 
+    }
+    else{
+        Set-VMMemory $VMname -DynamicMemoryEnabled $false -StartupBytes $VMmem -MinimumBytes $VMminmem -MaximumBytes $VMmaxmem
+    }
 }
 catch {
 
@@ -92,14 +107,3 @@ catch {
 }
 
 
-#Checks if the Image Already Excists if not Copy's the Images to the location the VM will be And gets the Location of the new drive 
-$CheckExcistence = Get-ChildItem -Path $VMLocation | Where-Object {$_.Name -eq "$VMname.vhdx" -or $_.Name -eq "$VMname"} 
-if ($null -ne $CheckExcistence){
-    Write-Host "There is Already an VM with the name $VMname in the location $VMLocation"
-} else {
-
-    Copy-Item "$imagepath" -Destination "$VMLocation\$VMName.vhdx"
-    $
-    $VHDpath = $VHDPath.Fullname   
-
-}
