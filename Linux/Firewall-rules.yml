@@ -18,7 +18,7 @@
 
     - name: Allow access to multiple ports
       community.general.ufw:
-        rule: Allow
+        rule: allow
         port: "{{ item.port }}"
         proto: "{{ item.proto }}"
       loop:
