@@ -1,9 +1,9 @@
 
 
 ---
-  name: Creating Firewall Rules For ubuntuMachine With input
-  hosts: all 
-  tasks:
+  - name: Creating Firewall Rules For ubuntuMachine With input
+    hosts: all 
+    tasks: 
 
   - name: check if UFW is enabled and deny acces to all ports
     community.general.ufw:
