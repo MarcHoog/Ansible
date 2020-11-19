@@ -98,8 +98,6 @@ function set-VHDFromImage{
         try {
             $VmPath = New-Item -ItemType Directory -Path "$vmlocation\$vmname\Virtual Hard Disks\"
             $Vmpath = $VmPath.Fullname
-            $errormsg = $_.exception.message
-            $module.FailJson("there was an error message: $errormsg")
 
             Copy-Item "$imagepath" -Destination "$VmPath\$VMName.vhdx"
             $VHDpath =  Get-ChildItem -Path $VmPath| Where-Object {$_.Name -eq "$VMname.vhdx"} 
