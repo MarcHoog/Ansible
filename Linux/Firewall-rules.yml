@@ -13,7 +13,7 @@
     - name: allow acces through SSH 
       community.general.ufw:
         rule: allow
-        port: SSH
+        name: SSH
         
 
     - name: Allow access to multiple ports
