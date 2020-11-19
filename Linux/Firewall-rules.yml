@@ -22,9 +22,9 @@
         port: "{{ item.port }}"
         proto: "{{ item.proto }}"
       loop:
-        - {port: 43, proto: UDP}
-        - {port: 44, proto: TCP}
-        - {port: 45, proto: UDP}
-        - {port: 46, proto: TCP}
+        - {port: 43, proto: udp}
+        - {port: 44, proto: tcp}
+        - {port: 45, proto: udp}
+        - {port: 46, proto: tcp}
 
  
