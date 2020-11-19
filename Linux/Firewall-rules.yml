@@ -19,12 +19,12 @@
     - name: Allow access to multiple ports
       community.general.ufw:
         rule: Allow
-        port: "{{ loop.port }}"
-        proto: "{{ loop.proto }}"
-        loop:
-          - {port: 43, proto: UDP}
-          - {port: 44, proto: TCP}
-          - {port: 45, proto: UDP}
-          - {port: 46, proto: TCP}
+        port: "{{ item.port }}"
+        proto: "{{ item.proto }}"
+      loop:
+        - {port: 43, proto: UDP}
+        - {port: 44, proto: TCP}
+        - {port: 45, proto: UDP}
+        - {port: 46, proto: TCP}
 
  
