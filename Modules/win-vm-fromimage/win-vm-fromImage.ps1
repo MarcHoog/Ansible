@@ -28,20 +28,20 @@ $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
 #Define the Arugments
 
-$Action = $spec.Action
-$VMname = $spec.VMname
-$VMgeneration = $spec.VMgeneration
-$VMos = $spec.$VMos
-$VMlocation = $spec.VMlocation
-$VMcpu = $spec.VMcpu
+$Action = $module.params.Action
+$VMname = $module.params.VMname
+$VMgeneration = $module.params.VMgeneration
+$VMos = $module.params.VMos
+$VMlocation = $module.params.VMlocation
+$VMcpu = $module.params.VMcpu
 
-$startupMemory = $spec.startupMemory
-$minimalMemory = $spec.minimalMemory
-$maximumMemory = $spec.maximumMemory
+$startupMemory = $module.params.startupMemory
+$minimalMemory = $module.params.minimalMemory
+$maximumMemory = $module.params.maximumMemory
 
-$VMswitch = $spec.VMswitch
-$imageName = $spec.imageName
-$imageFolder = $spec.imageFolder
+$VMswitch = $module.params.VMswitch
+$imageName = $module.params.imageName
+$imageFolder = $module.params.imageFolder
 
 
 
