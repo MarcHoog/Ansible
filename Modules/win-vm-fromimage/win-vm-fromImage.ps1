@@ -75,7 +75,7 @@ function new-HyperVM{
 
 function set-VCPU{
     try {
-        Set-VMProccer $VMname -Count $VMcpu 
+        Set-VMProcessor $VMname -Count $VMcpu 
     }
     catch {
         $errormsg = $_.exception.message
