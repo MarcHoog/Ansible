@@ -51,8 +51,8 @@ $spec = @{
     }
     required_if = @(
         ,@('Enabled',$True,@('password'))
+    
     }
-
     
     $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
