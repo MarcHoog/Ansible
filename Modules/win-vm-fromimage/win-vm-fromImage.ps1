@@ -120,7 +120,7 @@ function set-VHDFromImage{
 
 function set-VRAM {
     try {
-        if(!minimalMemory -or !maximumMemory){
+        if(!$minimalMemory -or !$maximumMemory){
             Set-VMMemory $VMname -DynamicMemoryEnabled $false -StartupBytes $startupMemory 
         }else {
             Set-VMMemory $VMname -DynamicMemoryEnabled $True -StartupBytes $startupMemory -MinimumBytes $minimalMemory -MaximumBytes $maximumMemory
