@@ -57,7 +57,7 @@ function new-HyperVM{
     #    $module.FailJson("The path $Vmlocation doesn't excist")
     #}
 
-    $CheckVM = Get-VM -name $name -ErrorAction SilentlyContinue
+    $CheckVM = Get-VM -name $VMname -ErrorAction SilentlyContinue
     $CheckVMHardisk = Get-ChildItem -Path $VMLocation | Where-Object {$_.Name -eq "$VMname.vhdx" -or $_.Name -eq "$VMname"}
     if($CheckVMHardisk -or $CheckVM){
         $module.FailJson("There is already an Disk or VM created with the name $VMname; This Script try's to Create Unique Names for easier management")
