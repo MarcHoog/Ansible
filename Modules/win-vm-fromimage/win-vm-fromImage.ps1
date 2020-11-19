@@ -127,6 +127,7 @@ function set-VRAM {
         }    
     }
     catch {
+        $errormsg = $_.exception.message
         $module.FailJson("there was an error setting the VM's ram; message: $errormsg") 
     }
        
