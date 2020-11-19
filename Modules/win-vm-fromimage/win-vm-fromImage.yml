@@ -1,6 +1,6 @@
 ---
   - name: CustomModule (win-vm-fromImage) Test Playbook
-    hosts: WIN-INFRALAB
+    hosts: WIN-INFRALAB.doekoe.local
     tasks: 
     - name: Create Windows Coreserver from an image
       win-vm-fromImage:
