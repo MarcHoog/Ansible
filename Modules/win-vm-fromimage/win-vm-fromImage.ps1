@@ -16,7 +16,7 @@ $spec = @{
         VMswitch = @{ type = "str";}
         VMimage = @{
             imageName = @{type = "str";}
-            imageFolder = @{type = "str"; default = 'C:\images'} 
+            imageFolder = @{type = "str"; default = 'C:\image'} 
         }
         machineOption = @{
             hostname = @{type = "str";}
