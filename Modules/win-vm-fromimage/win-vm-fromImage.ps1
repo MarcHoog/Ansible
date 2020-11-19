@@ -4,10 +4,10 @@
 
 $spec = @{
     options = @{
-        Action = @{ type = "str"; options = 'Create','Delete'; required = $true} 
+        Action = @{ type = "str"; choices = 'Create','Delete'; required = $true} 
         VMname = @{ type = "str"; required = $true}
-        VMgeneration = @{ type = "int"; options = 1, 2; default = 2}
-        VMos = @{ type = "str"; options = 'Linux','Windows'; required = $true}
+        VMgeneration = @{ type = "int"; choices = 1, 2; default = 2}
+        VMos = @{ type = "str"; choices = 'Linux','Windows'; required = $true}
         VMlocation = @{ type = "str"; default = 'C:\Users\Public\Documents\Hyper-V\Virtual hard disks' }
         VMcpu = @{ type = "int"; default = 1}
         VMmemory = @{
