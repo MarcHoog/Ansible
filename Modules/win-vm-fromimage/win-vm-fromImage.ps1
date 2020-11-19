@@ -10,18 +10,15 @@ $spec = @{
         VMos = @{ type = "str"; choices = 'Linux','Windows'; required = $true}
         VMlocation = @{ type = "str"; default = 'C:\Users\Public\Documents\Hyper-V\Virtual hard disks' }
         VMcpu = @{ type = "int"; default = 1}
-        VMmemory = @{
-            startupMemory = @{ type = "str"; default = 2GB}
-            minimalMemory = @{ type = "str";}
-            maximumMemory = @{ type = "str";}
-        }
+        startupMemory = @{ type = "str"; default = 2GB}
+        minimalMemory = @{ type = "str";}
+        maximumMemory = @{ type = "str";}
         VMswitch = @{ type = "str";}
-        VMimage = @{
-            imageName = @{type = "str";}
-            imageFolder = @{type = "str"; default = 'C:\image'} 
-        }
+        imageName = @{type = "str";}
+        imageFolder = @{type = "str"; default = 'C:\image'} 
     }
 }
+
 
 $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
