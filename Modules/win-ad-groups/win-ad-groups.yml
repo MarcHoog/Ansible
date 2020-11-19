@@ -1,0 +1,10 @@
+---
+- name: Test Script
+  hosts: win-seraphine.DOEKOE.LOCAL
+
+  tasks:
+  - name: testit
+    win-ad-groups:
+      state: absent
+      member: marc
+      group: lol
