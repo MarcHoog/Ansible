@@ -1,14 +1,10 @@
 ---
-  - name: CustomModule (win-vm-fromImage) Test Playbook
-    host: WIN-INFRALAB
-    tasks: 
+- name: Test Script
+  hosts: win-seraphine.DOEKOE.LOCAL
 
-    - name: Create Windows Coreserver from an image
-      win-vm-fromimage:
-        Action: Create
-        VMname: PieterHans
-        VMos: Windows
-        VMimage:
-          imageName: ServerCore2019-gen2
-          imageFolder: C:\image
-  
+  tasks:
+  - name: testit
+    win-ad-groups:
+      state: absent
+      member: marc
+      group: lol
