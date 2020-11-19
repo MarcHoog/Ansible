@@ -53,9 +53,9 @@ function test-hyperV{
 
 function new-HyperVM{
 
-    if(Test-Path -Path $VMLocation -eq $false){
-        $module.FailJson("The path $Vmlocation doesn't excist")
-    }
+    #if(Test-Path -Path $VMLocation -eq $false){
+    #    $module.FailJson("The path $Vmlocation doesn't excist")
+    #}
 
     $CheckVM = Get-VM -name $name -ErrorAction SilentlyContinue
     $CheckVMHardisk = Get-ChildItem -Path $VMLocation | Where-Object {$_.Name -eq "$VMname.vhdx" -or $_.Name -eq "$VMname"}
