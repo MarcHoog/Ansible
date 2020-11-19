@@ -1,4 +1,6 @@
 #!powershell
+#AnsibleRequires -CSharpUtil Ansible.Basic
+
 
 $spec = @{
     options = @{
