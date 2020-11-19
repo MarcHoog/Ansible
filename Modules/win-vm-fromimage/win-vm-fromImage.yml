@@ -1,12 +1,24 @@
 ---
   - name: CustomModule (win-vm-fromImage) Test Playbook
     hosts: WIN-INFRALAB.doekoe.local
+    vars_prompt:
+
+    - name: Action
+      prompt: DO you want to Create or Delete an VM?
+      private: no
+
+    - name: VMname
+      prompt: What is the Name of the VM?
+
+    - name: ImageName
+      prompt: What is the Name of the Image 
+
+
     tasks: 
     - name: Create Windows Coreserver from an image
       win-vm-fromImage:
-        Action: Create
-        VMname: PieterHans
+        Action: "{{ Action }}"
+        VMname: "{{ VMname }}"
         VMos: Windows
-        imageName: ServerCore2019-gen2
-        imageFolder: C:\image
+        imageName: "{{ ImageName }}"
   
