@@ -20,9 +20,6 @@ $spec = @{
             imageName = @{type = "str";}
             imageFolder = @{type = "str"; default = 'C:\image'} 
         }
-        machineOption = @{
-            hostname = @{type = "str";}
-        }
     }
 }
 
