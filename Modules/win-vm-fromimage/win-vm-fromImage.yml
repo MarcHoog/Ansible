@@ -3,7 +3,7 @@
     hosts: WIN-INFRALAB
     tasks: 
     - name: Create Windows Coreserver from an image
-      win-vm-fromimage:
+      win-vm-fromImage:
         Action: Create
         VMname: PieterHans
         VMos: Windows
