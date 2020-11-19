@@ -6,7 +6,7 @@
     - name: check if UFW is enabled and deny acces to all ports
       community.general.ufw:
         state: enabled
-        policy: Deny
+        policy: deny
 
     - name: allow acces through SSH 
       community.general.ufw:
@@ -20,9 +20,9 @@
         port: "{{ item.port }}"
         proto: "{{ item.proto }}"
         loop:
-          - {port: 43, proto: 'UDP'}
-          - {port: 44, proto: 'TCP'}
-          - {port: 45, proto: 'UDP'}
-          - {port: 46, proto: 'TCP'}
+          - {port: 43, proto: UDP}
+          - {port: 44, proto: TCP}
+          - {port: 45, proto: UDP}
+          - {port: 46, proto: TCP}
 
  
