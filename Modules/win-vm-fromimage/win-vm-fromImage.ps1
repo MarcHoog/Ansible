@@ -27,7 +27,7 @@ $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 $Action = $module.params.Action
 $VMname = $module.params.VMname
 $VMgeneration = $module.params.VMgeneration
-$VMos = $module.params.VMos
+#$VMos = $module.params.VMos
 $VMlocation = $module.params.VMlocation
 $VMcpu = $module.params.VMcpu
 
