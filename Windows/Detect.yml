@@ -4,9 +4,15 @@
   connection: local
   tasks:
 
-    - name: Add tower inventory
+    - name: Add AwX inventory for PXE clients
       tower_inventory:
-        name: "Foo Inventory"
-        description: "Our Foo Cloud Servers"
+        name: "PXE clients"
+        description: "Inventory for pxe Clients"
         organization: "Doekoe.local"
         state: present
+
+
+    - name: Scan for hosts
+      plugin: community.general.nmap
+      strict: False
+      address: 39.0.0.0/24
