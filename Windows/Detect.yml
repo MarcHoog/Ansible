@@ -13,6 +13,7 @@
 
 
     - name: Scan for hosts
-      plugin: community.general.nmap
-      strict: False
-      address: 39.0.0.0/24
+      community.general.nmap:
+        plugin: community.general.nmap
+        strict: False
+        address: 39.0.0.0/24
