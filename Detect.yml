@@ -1,0 +1,10 @@
+---
+  - name: Detect Newhosts Within network And put them into an Inventory
+    tasks:
+
+      - name: Add tower inventory
+        tower_inventory:
+          name: "Foo Inventory"
+          description: "Our Foo Cloud Servers"
+          organization: "Doekoe.local"
+          state: present
