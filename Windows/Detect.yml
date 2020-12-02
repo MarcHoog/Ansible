@@ -1,0 +1,27 @@
+---
+- name: Parsing Powershell Variables between multiple tasks in the Ansible Playbook
+  hosts: win-testenv1.TESTENV.DOEKOE.LOCAL
+  gather_facts: yes
+  tasks:
+
+    - name: Get Variable1
+      win_shell: |
+        whoami 
+      register: whoami_result
+
+    - name: What is Variable1
+      debug:
+        var: whoami_result
+        verbosity: 0
+
+    - name: Throw in a fucntion
+      win_shell: |
+          function Get-Something
+          {
+          Param
+           (
+             [Parameter(Mandatory=$true, Position=0)]
+             [string] $Name
+           )
+           write  output $Name
+          }   
