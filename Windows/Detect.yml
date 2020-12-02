@@ -1,6 +1,6 @@
 ---
 - name: Detect Newhosts Within network And put them into an Inventory
-  hosts: AWX.local
+  hosts: localhost
   tasks:
 
     - name: Add tower inventory
