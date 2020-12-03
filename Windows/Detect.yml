@@ -10,9 +10,6 @@
         description: "Inventory for pxe Clients"
         organization: "Doekoe.local"
         state: present
-        variables: 
-          plugin: community.general.nmap
-          strict: False
-          address: 39.0.0.0/24
+
 
 
