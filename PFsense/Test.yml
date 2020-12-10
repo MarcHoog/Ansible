@@ -2,7 +2,9 @@
 #https://github.com/opoplawski/ansible-pfsense
 
 ---
-- hosts: all
+- name: test Pfsense script
+  hosts: all
+  tasks: 
 
   - name: Add gateway
     pfsense_gateway:
