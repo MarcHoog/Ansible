@@ -6,5 +6,5 @@
   tasks: 
 
   - name: Test reachability to 8.8.8.8
-    vyos.vyos.vyos_ping:
-      dest: 8.8.8.8
+    ansible.netcommon.net_ping:
+      dest: 10.10.10.10
