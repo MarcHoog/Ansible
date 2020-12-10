@@ -1,0 +1,64 @@
+---
+
+- name: Configuring some basic router settings through Ansible
+  connection: network_cli
+  hosts: all
+  tasks:
+
+  - name: Changing Device Hostname
+    vyos.vyos.vyos_config:
+      lines:
+      - set system hostname Vyos-test12345
+      - set system hostname Vyos-TestEnviorment
+
+  - name: Configuring the Pre-login banner and the post-login banner
+    vyos.vyos.vyos_banner:
+      banner: pre-login
+      text: |
+        Dit
+        is
+        een
+        multi
+        lines
+        banner
+      state: present
+  
+  - name: removing pre-login banner
+    vyos.vyos.vyos_banner:
+      banner: pre-login
+      state: absent
+
+
+  - name: User aanmaken Via Ansible
+    vyos.vyos.vyos_user:
+      name: TestUser123
+      configured_password: Doekoe2020!
+      update_password: always
+      state: present
+
+  - name: Remove aangemaakte User
+    vyos.vyos.vyos_user:
+      name: TestUser123
+      state: absent
+
+  - name: configuring Vyos interfaces through Ansible
+    vyos.vyos.vyos_interfaces:
+      config:
+      - name: eth1
+        descriptions: eth1 Configured by Ansible Module
+        dublex: full
+        enabled: yes
+
+  - name: Configuring Vyos Layer 3 settings through Ansbible
+    vyos.vyos.vyos_l3_interfaces:
+      config:
+        - name: eth1
+          ipv4:
+            - address: 7.7.7.7/30
+
+  - name: Configuring Vyos Layer DHCP settings through Ansible
+    vyos.vyos.vyos_l3_interfaces:
+      config:
+        - name: eth1
+          ipv4:
+           - address: DHCP
