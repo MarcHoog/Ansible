@@ -45,15 +45,6 @@
           ipv4:
             - address: 7.7.7.7/30
 
-  - name: Configuring Vyos Layer DHCP settings through Ansible
-    vyos.vyos.vyos_l3_interfaces:
-      config:
-        - name: eth1
-          ipv4:
-           - address: dhcp
-          state: overridden
-
-
   - name: Changing Device Hostname
     vyos.vyos.vyos_config:
       lines:
