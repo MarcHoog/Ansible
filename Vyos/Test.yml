@@ -3,6 +3,7 @@
 ---
 - name: ping vyos script
   hosts: all
+  ansible_network_os: vyos
   tasks: 
 
   - name: Test reachability to 8.8.8.8
