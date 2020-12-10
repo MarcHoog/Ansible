@@ -45,7 +45,8 @@
       config:
       - name: eth1
         description: eth1 Configured by Ansible Module
-        duplex: full
+        speed: auto
+        duplex: auto
         enabled: yes
 
   - name: Configuring Vyos Layer 3 settings through Ansbible
