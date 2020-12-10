@@ -44,7 +44,7 @@
     vyos.vyos.vyos_interfaces:
       config:
       - name: eth1
-        descriptions: eth1 Configured by Ansible Module
+        description: eth1 Configured by Ansible Module
         dublex: full
         enabled: yes
 
