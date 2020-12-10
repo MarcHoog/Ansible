@@ -8,7 +8,7 @@
     - name: Get config for VyOS devices
       vyos.vyos.vyos_facts:
         gather_subset: all
-      when: ansible_network_os == 'vyos.vyos.vyos'
+      when: ansible_network_os == 'vyos'
 
     - name: Display the config
       debug:
