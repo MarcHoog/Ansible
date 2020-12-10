@@ -1,6 +1,7 @@
 #Simple ping Command 
 --- 
 - name: Pinged de Machine
+  gather_facts: no
   hosts: 
     - all
   tasks: 
