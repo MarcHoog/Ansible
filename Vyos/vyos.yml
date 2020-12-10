@@ -51,17 +51,13 @@
         - name: eth1
           ipv4:
            - address: dhcp
+          state: replaced
 
 
   - name: Changing Device Hostname
     vyos.vyos.vyos_config:
       lines:
       - set system host-name Vyos-TestEnviorment
-
-  - name: removing pre-login banner
-    vyos.vyos.vyos_banner:
-      banner: pre-login
-      state: absent
 
   - name: Remove aangemaakte User
     vyos.vyos.vyos_user:
