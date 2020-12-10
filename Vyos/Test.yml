@@ -1,14 +1,10 @@
-# pfsense
-#https://github.com/opoplawski/ansible-pfsense
+
 
 ---
-- name: test Pfsense script
+- name: ping vyos script
   hosts: all
   tasks: 
 
-  - name: Add gateway
-    pfsensible.core.pfsense_gateway:
-      name: default_gw
-      interface: wan
-      gateway: 1.2.3.4
-      state: present
+  - name: Test reachability to 8.8.8.8
+    vyos.vyos.vyos_ping:
+      dest: 8.8.8.8
