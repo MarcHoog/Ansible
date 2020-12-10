@@ -28,7 +28,6 @@
       banner: pre-login
       state: absent
 
-
   - name: User aanmaken Via Ansible
     vyos.vyos.vyos_user:
       name: TestUser123
