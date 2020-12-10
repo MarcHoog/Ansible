@@ -8,8 +8,8 @@
   - name: Changing Device Hostname
     vyos.vyos.vyos_config:
       lines:
-      - set system hostname Vyos-test12345
-      - set system hostname Vyos-TestEnviorment
+      - set system hostname "Vyos-test12345"
+      - set system hostname "Vyos-TestEnviorment"
 
   - name: Configuring the Pre-login banner and the post-login banner
     vyos.vyos.vyos_banner:
