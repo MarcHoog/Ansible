@@ -51,7 +51,7 @@
         - name: eth1
           ipv4:
            - address: dhcp
-          state: replaced
+          state: overridden
 
 
   - name: Changing Device Hostname
