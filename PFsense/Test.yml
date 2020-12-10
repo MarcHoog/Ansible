@@ -2,7 +2,7 @@
 #https://github.com/opoplawski/ansible-pfsense
 
 ---
-- hosts: pfsense
+- hosts: all
   # For initial password connection use paramiko to handle BSD prompts
   connection: paramiko
   roles:
