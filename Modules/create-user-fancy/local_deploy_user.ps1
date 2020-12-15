@@ -36,9 +36,11 @@ function generate_SamAccountName([String]$Firstname,[String]$Lastname){
                         $inc ++
                         $SamAccountName = $SamAccountName + [string]$inc
                     } 
-                    until (-not (Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}))
+                    until (-not (Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"})){
+                        Return $SamAccountName
+                    }
                 
-                    Return $SamAccountName
+                    
                 }
 
 }
