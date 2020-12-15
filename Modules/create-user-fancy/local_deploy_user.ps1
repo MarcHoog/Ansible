@@ -44,49 +44,25 @@ function generate_SamAccountName([String]$Firstname,[String]$Lastname){
 }
 
 
+
+
+
 $checkAD = Get-ADDomainController -Erroraction SilentlyContinue
 if (!$checkAD) {
-    $module.failjson("Active Directory Functions aren't reachable on target computer")
-}
-
-
-
-
-try {
-
-
-    
-    if ($module.params.action -eq 'create') {
-
-        $SamAccountName = generate_SamAccountName -Firstname $module.params.firstname -Lastname $module.params.firstname
-        
-        
-        New-ADUser `
-        -Name $module.params.firstname `
-        -Lastname  $module.params.lastname `
-        -SAMaccountname $SamAccountName
-
-
-        
+        $module.failjson("Active Directory Functions aren't reachable on target computer")
     }
+
+ 
+if ($module.params.action -eq 'create') {
+        $SamAccountName = generate_SamAccountName -Firstname $module.params.firstname -Lastname $module.params.lastname
+        New-ADUser -Name $module.params.firstname -Lastname  $module.params.lastname -SAMaccountname $SamAccountName
+    }
+
+
+
+elseif ($module.params.action -eq 'remove') {    
     
-
-}catch {
-    $module.failjson("Creating a user in Active Directory has failed ; " + $_.Exception.Message )
-}
-
-
-
-
-
-
-
-
-elseif ($module.params.action -eq 'remove') {
-
-
-    
-}
+    }
 
 
 $module.Exitjson();
