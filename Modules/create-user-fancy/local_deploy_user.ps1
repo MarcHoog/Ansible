@@ -54,9 +54,10 @@ if ($module.params.action -eq 'create') {
         
         $SamAccountName = generate_SamAccountName -Firstname $module.params.firstname -Lastname $module.params.lastname
         
-        New-ADUser -Name $module.params.firstname `
-        -surname  $module.params.lastname `
-        -SAMaccountname $SamAccountName
+        New-ADUser `
+            -Name $module.params.firstname `
+            -surname  $module.params.lastname `
+            -SamAccountname $SamAccountName
     }
 
 
