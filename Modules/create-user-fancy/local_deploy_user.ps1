@@ -52,7 +52,7 @@ if (!$checkAD) {
 if ($module.params.action -eq 'create') {
     
     New-ADUser `
-    -Firstname $module.params.firstname `
+    -Name $module.params.firstname `
     -Lastname  $module.params.lastname `
     -SAMaccountname $SamAccountName = generate_SamAccountName -Firstname $module.params.firstname -Lastname $module.params.firstname `
     
