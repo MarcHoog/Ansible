@@ -38,7 +38,7 @@ if (!$checkAD) {
 if ($module.params.action -eq 'create') {
 
 
-    $SamAccountName = $module.params.firstname.Substring(0.5) + $module.params.lastname(0.3)
+    $SamAccountName = $module.params.firstname.Substring(0.5) + $module.params.lastname.Substring(0.3)
 
     [int] $inc = 0
     if (Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}) {    
