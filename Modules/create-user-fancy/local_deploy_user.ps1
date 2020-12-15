@@ -24,49 +24,43 @@ $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
 
 
-function generate_SamAccountName([String]$Firstname,[String]$Lastname){
 
-    $SamAccountName = $Lastname.Substring(0.5) + $Firstname.Substring(0.3)
 
-    [int] $inc = 0
-                if (Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}) 
-                {    
-                    do 
-                    {
-                        $inc ++
-                        $SamAccountName = $SamAccountName + [string]$inc
-                    } 
-                    until (-not (Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"})){
-                        Return $SamAccountName
-                    }
-                
-                    
-                }
 
-}
 
 
 $checkAD = Get-ADDomainController -Erroraction SilentlyContinue
 if (!$checkAD) {
         $module.failjson("Active Directory Functions aren't reachable on target computer")
-    }
+}
 
  
 if ($module.params.action -eq 'create') {
-        
-        $SamAccountName = generate_SamAccountName -Firstname $module.params.firstname -Lastname $module.params.lastname
-        
-        New-ADUser `
-            -Name $module.params.firstname `
-            -surname  $module.params.lastname `
-            -SamAccountname $SamAccountName
+
+
+    $SamAccountName = $module.params.firstname.Substring(0.5) + $module.params.lastname(0.3)
+
+    [int] $inc = 0
+    if (Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}) {    
+        do {
+            $inc ++
+            $SamAccountName = $SamAccountName + [string]$inc
+        }
+        until (-not (Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}))   
     }
+    
+    New-ADUser `
+        -Name $SamAccountName `
+        -givenname $module.params.firstname `
+        -surname  $module.params.lastname `
+        -SamAccountname $SamAccountName
+}
 
 
 
 elseif ($module.params.action -eq 'remove') {    
     
-    }
+}
 
 
 $module.Exitjson();
