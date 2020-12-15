@@ -9,3 +9,5 @@
   - name: Creat OU for New department
     local_deploy_user:
       action: create
+      firstname: bob
+      lastname: test
