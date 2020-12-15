@@ -7,5 +7,5 @@
 
 
   - name: Creat OU for New department
-    custom_deploy_user:
+    local_deploy_user:
       action: create
