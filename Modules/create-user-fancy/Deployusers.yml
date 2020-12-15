@@ -1,0 +1,11 @@
+---
+- name: Provision Projects And Departments in a few Clicks
+  hosts: aspire-server
+  
+
+  tasks:
+
+
+  - name: Creat OU for New department
+    custom_deploy_user:
+      action: create
