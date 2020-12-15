@@ -1,6 +1,6 @@
 ---
 - name: Provision Projects And Departments in a few Clicks
-  hosts: aspire-server
+  hosts: all
   
 
   tasks:
