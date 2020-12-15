@@ -22,13 +22,6 @@ $spec = @{
 
 $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
-
-
-
-
-
-
-
 $checkAD = Get-ADDomainController -Erroraction SilentlyContinue
 if (!$checkAD) {
         $module.failjson("Active Directory Functions aren't reachable on target computer")
