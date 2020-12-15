@@ -72,7 +72,7 @@ try {
     
 
 }catch {
-    $module.failjson("Creating a user in Active Directory has failed ; $errormessage ")
+    $module.failjson("Creating a user in Active Directory has failed ; " + $_.Exception.Message )
 }
 
 
