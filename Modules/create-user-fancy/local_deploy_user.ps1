@@ -49,14 +49,38 @@ if (!$checkAD) {
     $module.failjson("Active Directory Functions aren't reachable on target computer")
 }
 
-if ($module.params.action -eq 'create') {
+
+
+
+try {
+
+
     
-    New-ADUser `
-    -Name $module.params.firstname `
-    -Lastname  $module.params.lastname `
-    -SAMaccountname $SamAccountName = generate_SamAccountName -Firstname $module.params.firstname -Lastname $module.params.firstname `
+    if ($module.params.action -eq 'create') {
+
+        $SamAccountName = generate_SamAccountName -Firstname $module.params.firstname -Lastname $module.params.firstname
+        
+        
+        New-ADUser `
+        -Name $module.params.firstname `
+        -Lastname  $module.params.lastname `
+        -SAMaccountname $SamAccountName
+
+
+        
+    }
     
+
+}catch {
+    $module.failjson("Creating a user in Active Directory has failed ; $errormessage ")
 }
+
+
+
+
+
+
+
 
 elseif ($module.params.action -eq 'remove') {
 
