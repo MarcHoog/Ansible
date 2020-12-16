@@ -35,7 +35,7 @@ if (!$checkedAD) {
         $module.failjson("Active Directory Functions aren't reachable on target computer ; Creating/removing user will be aborted")
 }
 
-if (oupath){
+if ($oupath){
     $checkedoupath = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
     if(!$checkoupath){
         $module.failjson("Couldn't given ou path ; Creating/removing user will be aborted")
