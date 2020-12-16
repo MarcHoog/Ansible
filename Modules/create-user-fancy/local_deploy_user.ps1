@@ -23,6 +23,7 @@ $spec = @{
         lastname = @{ type = "str"; required = $true}
         oupath = @{ type = "str";}
         sharepath = @{ type = "str";}
+        groups = @{ type = "list";}
     }
 }
 
@@ -35,6 +36,7 @@ $givenname = $module.params.firstname
 $surname = $module.params.lastname
 $oupath = $module.params.oupath
 $sharepath = $module.params.sharepath
+$groups = $module.params.groups
 
 #checks for Active directory functions
 $checkAD = Get-ADDomainController -Erroraction SilentlyContinue
@@ -69,7 +71,10 @@ if ($action -eq 'create') {
         -path $oupath `
         -profilepath "$sharepath\%username%" `
         -Homedrive "Z" `
-        -Homedirectory "$sharepath\%username%"
+        -Homedirectory "$sharepath\%username%" `
+        -AccountPassword (convertto-securestring "P@ssword123" -AsPlainText -Force) `
+        -ChangePasswordAtLogon $True `
+        -Enabled $True
 
     #Create his folder
 
@@ -89,6 +94,9 @@ if ($action -eq 'create') {
     Set-Acl -Path $homeShare -AclObject $acl -ea Stop
 
     # Give the user Groups 
+
+    write $groups
+
 }
 
 
