@@ -24,22 +24,16 @@ $spec = @{
 
 $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
+#Makes the Variables easier to use and more readable
 $action = $module.params.action
 $givenname = $module.params.firstname
 $surname = $module.params.lastname
 $oupath = $module.params.oupath
 
-
-$checkedAD = Get-ADDomainController -Erroraction SilentlyContinue
-if (!$checkedAD) {
-        $module.failjson("Active Directory Functions aren't reachable on target computer ; Creating/removing user will be aborted")
-}
-
-if ($oupath){
-    $checkedoupath = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
-    if(!$checkoupath){
-        $module.failjson("Couldn't given ou path ; Creating/removing user will be aborted")
-    }
+#checks for Active directory functions
+$checkAD = Get-ADDomainController -Erroraction SilentlyContinue
+if (!$checkAD) {
+        $module.failjson("Active Directory Functions aren't reachable on target computer")
 }
 
  
@@ -52,17 +46,18 @@ if ($action -eq 'create') {
             $SamAccountName = $SamAccountName + [string]$inc
         }
         until (!(Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}))   
-    
     }
 
+    $checkOU = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
+    if(!$checkOU){
+        $module.failjson("Couldn't find $oupath user $SamAccountName Creating user will be aborted")
+    }
 
-    $user = New-ADUser `
-        -givenname $givenname `
-        -surname $surname `
-        -name $SamAccountName `
-        -SamAccountName $SamAccountName `
-        -Path $checkedoupath
+    $user = New-ADUser -givenname $givenname -surname $surname -name $SamAccountName -SamAccountName $SamAccountName `
+        -Path $checkOU
                         
+    Invoke-Expression -Command $Executable_command
+
 }
 
 
