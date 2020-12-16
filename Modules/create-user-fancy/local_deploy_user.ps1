@@ -51,7 +51,7 @@ if ($action -eq 'create') {
             $inc ++
             $SamAccountName = $SamAccountName + [string]$inc
         }
-        until (!(Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}))   
+        until (!(Get-ADuser -Filter {SamAccountName -eq $SamAccountName}))   
     }
 
     $checkOU = Get-ADOrganizationalUnit -Identity $oupath -ErrorAction SilentlyContinue
