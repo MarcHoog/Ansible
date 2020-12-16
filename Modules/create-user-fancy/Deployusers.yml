@@ -12,7 +12,8 @@
       firstname: bob
       lastname: test
       oupath: OU=Employee,OU=Human-Recources,OU=People,OU=EU,DC=Aspire,DC=local
-      sharepath: \\aspire-server\homefolders
+      sharepath: \\aspire-server\homefolder
+      groups:
         - test1
         - test2
         - test3
