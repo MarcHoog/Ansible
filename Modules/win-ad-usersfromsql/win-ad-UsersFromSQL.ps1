@@ -139,6 +139,7 @@
     elseif ($action -eq 'Disabled') {
     }
 
+    Invoke-Expression -Command 
 
     }catch {
         $errormsg = $_.exception.message

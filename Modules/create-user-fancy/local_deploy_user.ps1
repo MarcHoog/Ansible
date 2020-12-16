@@ -24,23 +24,26 @@ $spec = @{
 
 $module = [Ansible.Basic.AnsibleModule]::Create($args,$spec)
 
-#Makes the Variables easier to use and more readable
 $action = $module.params.action
 $givenname = $module.params.firstname
 $surname = $module.params.lastname
 $oupath = $module.params.oupath
 
-#checks for Active directory functions
-$checkAD = Get-ADDomainController -Erroraction SilentlyContinue
-if (!$checkAD) {
-        $module.failjson("Active Directory Functions aren't reachable on target computer")
+
+$checkedAD = Get-ADDomainController -Erroraction SilentlyContinue
+if (!$checkedAD) {
+        $module.failjson("Active Directory Functions aren't reachable on target computer ; Creating/removing user will be aborted")
+}
+
+if (oupath){
+    $checkedoupath = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
+    if(!$checkoupath){
+        $module.failjson("Couldn't given ou path ; Creating/removing user will be aborted")
+    }
 }
 
  
 if ($action -eq 'create') {
-    
-
-    #Creat An Unique Username Experience 
     $SamAccountName = $surname.substring(0.5) + $givenname.substring(0.3)
     if (Get-ADuser -Filter {SamAccountName -eq $SamAccountName}) {
         [int] $inc = 0    
@@ -49,31 +52,17 @@ if ($action -eq 'create') {
             $SamAccountName = $SamAccountName + [string]$inc
         }
         until (!(Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}))   
+    
     }
 
 
-
-    #Checks for OU path
-    $checkedoupath = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
-    if(!$checkoupath){
-        $module.warningjson("Couldn't find $oupath user $SamAccountName will be placed in default Directory")
-    }
-
-
-
-    #Pushes the command
     $user = New-ADUser `
         -givenname $givenname `
         -surname $surname `
         -name $SamAccountName `
         -SamAccountName $SamAccountName `
         -Path $checkedoupath
-                    
-
-
-    
-    Invoke-Expression -Command $Executable_command
-
+                        
 }
 
 
