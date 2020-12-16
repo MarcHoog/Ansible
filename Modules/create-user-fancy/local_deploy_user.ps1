@@ -45,8 +45,8 @@ if (!$checkAD) {
 if ($action -eq 'create') {
 
     $SamAccountName = $surname.substring(0.5) + $givenname.substring(0.3)
+    [int] $inc = 0 
     if (Get-ADuser -Filter {SamAccountName -eq $SamAccountName}) {
-        [int] $inc = 0    
         do {
             $inc ++
             $SamAccountName = $SamAccountName + [string]$inc
