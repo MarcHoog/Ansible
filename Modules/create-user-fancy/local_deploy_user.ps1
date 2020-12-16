@@ -75,7 +75,7 @@ if ($action -eq 'create') {
 
     $user = $User = Get-ADUser -Identity $samAccountName
 
-    $homeShare = New-Item -path $sharepath\$SamAccountName Itemtype Directory -Force
+    $homeShare = New-Item -path $sharepath\$SamAccountName -ItemType Directory -Force
     $acl = get-acl $homeShare
 
     $FileSystemRights = [System.Security.AccessControl.FileSystemRights]"Modify"
