@@ -34,6 +34,7 @@ $action = $module.params.action
 $givenname = $module.params.firstname
 $surname = $module.params.lastname
 $oupath = $module.params.oupath
+$sharepath = $module.params.sharepath
 
 #checks for Active directory functions
 $checkAD = Get-ADDomainController -Erroraction SilentlyContinue
