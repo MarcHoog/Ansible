@@ -64,10 +64,9 @@ if ($action -eq 'create') {
         -surname $surname `
         -name $SamAccountName `
         -SamAccountName $SamAccountName `
-        -path $oupath
-        -Userprofile 
-        -ProfilePath "$sharepath\%SAMACCOUNTNAME%"
-        -Homedrive "Z"
+        -path $oupath `
+        -profilepath "$sharepath\%SAMACCOUNTNAME%" `
+        -Homedrive "Z" `
         -Homedirectory "$sharepath\%SAMACCOUNTNAME%"
                     
 
