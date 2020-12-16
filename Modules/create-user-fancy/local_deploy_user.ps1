@@ -38,9 +38,6 @@ if (!$checkAD) {
 
  
 if ($action -eq 'create') {
-
-    #Creates the command
-    $Executable_command = "New-ADUser -givenname $givenname -surname $surname "
     
 
     #Creat An Unique Username Experience 
@@ -54,15 +51,24 @@ if ($action -eq 'create') {
         until (!(Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}))   
     }
 
-    $Executable_command += "-name $SamAccountName -SamAccountName $SamAccountName"
+
 
     #Checks for OU path
-    $checkoupath = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
-    if($checkoupath){
-        $Executable_command += "-path $oupath "
-    }else {
+    $checkedoupath = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
+    if(!$checkoupath){
         $module.warningjson("Couldn't find $oupath user $SamAccountName will be placed in default Directory")
     }
+
+
+
+    #Pushes the command
+    $user = New-ADUser `
+        -givenname $givenname `
+        -surname $surname `
+        -name $SamAccountName `
+        -SamAccountName $SamAccountName `
+        -Path $checkedoupath
+                    
 
 
     
