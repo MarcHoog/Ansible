@@ -58,7 +58,7 @@ if ($action -eq 'create') {
         -surname $surname `
         -name $SamAccountName `
         -SamAccountName $SamAccountName `
-
+        -path $oupath
                     
 
 }
