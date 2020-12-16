@@ -48,7 +48,7 @@ if ($action -eq 'create') {
         until (!(Get-ADuser -Filter {SamAccountName -eq "$SamAccountName"}))   
     }
 
-    $checkOU = Get-ADOrganizationalUnit -Identity $oupath | select-object Distinguishedname -ErrorAction SilentlyContinue
+    $checkOU = Get-ADOrganizationalUnit -Identity $oupath -ErrorAction SilentlyContinue
     if(!$checkOU){
         $module.failjson("Couldn't find $oupath user $SamAccountName Creating user will be aborted")
     }
@@ -57,7 +57,7 @@ if ($action -eq 'create') {
         -surname $surname `
         -name $SamAccountName `
         -SamAccountName $SamAccountName `
-        -Path $checkOU
+        -Path $oupath
                         
     Invoke-Expression -Command $Executable_command
 
