@@ -63,14 +63,32 @@ if ($action -eq 'create') {
     New-ADUser `
         -givenname $givenname `
         -surname $surname `
+        -userprincipalname "$SamAccountName@aspire.local" `
         -name $SamAccountName `
         -SamAccountName $SamAccountName `
         -path $oupath `
         -profilepath "$sharepath\%username%" `
         -Homedrive "Z" `
         -Homedirectory "$sharepath\%username%"
-                    
 
+    #Create his folder
+
+    $user = $User = Get-ADUser -Identity $samAccountName
+
+    $homeShare = New-Item -path $sharepath\$SamAccountName Itemtype Directory -Force
+    $acl = get-acl $homeShare
+
+    $FileSystemRights = [System.Security.AccessControl.FileSystemRights]"Modify"
+    $AccessControlType = [System.Security.AccessControl.AccessControlType]::Allow
+    $InheritanceFlags = [System.Security.AccessControl.InheritanceFlags]"ContainerInherit, ObjectInherit"
+    $PropagationFlags = [System.Security.AccessControl.PropagationFlags]"InheritOnly"
+ 
+    $AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule ($User.SID, $FileSystemRights, $InheritanceFlags, $PropagationFlags, $AccessControlType)
+    $acl.AddAccessRule($AccessRule)
+ 
+    Set-Acl -Path $homeShare -AclObject $acl -ea Stop
+
+    # Give the user Groups 
 }
 
 
