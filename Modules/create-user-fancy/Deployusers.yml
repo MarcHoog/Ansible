@@ -12,3 +12,4 @@
       firstname: bob
       lastname: test
       oupath: OU=Employee,OU=Human-Recources,OU=People,OU=EU,DC=Aspire,DC=local
+      sharepath: \\aspire-server\eu-fileserver\People

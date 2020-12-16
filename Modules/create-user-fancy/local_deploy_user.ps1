@@ -5,7 +5,11 @@
 [X] Check for Active Directory things
 [X] Check Look what kind of Action is taken to Create or to Remove A User
 [X] Create an very simple user in Active Directory 
-[] Put that User in a Certain Active Directory OU
+[X] Put that User in a Certain Active Directory OU
+[X] Persoonlijke folder
+
+
+[Omgekeerd Process van dit]
 
 
 #>
@@ -18,6 +22,7 @@ $spec = @{
         firstname = @{ type = "str"; required = $true}
         lastname = @{ type = "str"; required = $true}
         oupath = @{ type = "str";}
+        sharepath = @{ type = "str";}
     }
 }
 
@@ -38,6 +43,7 @@ if (!$checkAD) {
 
  
 if ($action -eq 'create') {
+
     $SamAccountName = $surname.substring(0.5) + $givenname.substring(0.3)
     if (Get-ADuser -Filter {SamAccountName -eq $SamAccountName}) {
         [int] $inc = 0    
@@ -59,6 +65,10 @@ if ($action -eq 'create') {
         -name $SamAccountName `
         -SamAccountName $SamAccountName `
         -path $oupath
+        -Userprofile 
+        -ProfilePath "$sharepath\%SAMACCOUNTNAME%"
+        -Homedrive "Z"
+        -Homedirectory "$sharepath\%SAMACCOUNTNAME%"
                     
 
 }
