@@ -83,7 +83,7 @@ if ($action -eq 'create') {
     $homeShare = New-Item -path $sharepath\$SamAccountName -ItemType Directory -Force
     $acl = get-acl $homeShare
 
-    $FileSystemRights = [System.Security.AccessControl.FileSystemRights]"Full control"
+    $FileSystemRights = [System.Security.AccessControl.FileSystemRights]"Fullcontrol"
     $AccessControlType = [System.Security.AccessControl.AccessControlType]::Allow
     $InheritanceFlags = [System.Security.AccessControl.InheritanceFlags]"ContainerInherit, ObjectInherit"
     $PropagationFlags = [System.Security.AccessControl.PropagationFlags]"InheritOnly"
