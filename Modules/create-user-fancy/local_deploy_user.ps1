@@ -53,7 +53,10 @@ if ($action -eq 'create') {
         $module.failjson("Couldn't find $oupath user $SamAccountName Creating user will be aborted")
     }
 
-    $user = New-ADUser -givenname $givenname -surname $surname -name $SamAccountName -SamAccountName $SamAccountName `
+    New-ADUser -givenname $givenname `
+        -surname $surname `
+        -name $SamAccountName `
+        -SamAccountName $SamAccountName `
         -Path $checkOU
                         
     Invoke-Expression -Command $Executable_command
