@@ -53,13 +53,13 @@ if ($action -eq 'create') {
         $module.failjson("Couldn't find $oupath user $SamAccountName Creating user will be aborted")
     }
 
-    New-ADUser -givenname $givenname `
+    New-ADUser `
+        -givenname $givenname `
         -surname $surname `
         -name $SamAccountName `
         -SamAccountName $SamAccountName `
-        -Path $oupath
-                        
-    Invoke-Expression -Command $Executable_command
+
+                    
 
 }
 
