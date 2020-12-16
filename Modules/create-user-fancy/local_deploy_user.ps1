@@ -65,20 +65,9 @@ if ($action -eq 'create') {
     }
 
 
+    
+    Invoke-Expression -Command $Executable_command
 
-
-
-
-
-
-
-    #The Command that Actually Pushes the user
-    New-ADUser `
-        -Name $SamAccountName `
-        -givenname `
-         `
-        -SamAccountname $SamAccountName `
-        -path $module.params.oupath
 }
 
 
