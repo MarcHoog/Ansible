@@ -45,12 +45,12 @@ if (!$checkAD) {
  
 if ($action -eq 'create') {
 
-    $SamAccountName = $surname.substring(0.5) + $givenname.substring(0.3)
+    $TempSamAccountName = $surname.substring(0.5) + $givenname.substring(0.3)
     [int] $inc = 0 
-    if (Get-ADuser -Filter {SamAccountName -eq $SamAccountName}) {
+    if (Get-ADuser -Filter {SamAccountName -eq $TempSamAccountName}) {
         do {
             $inc ++
-            $SamAccountName = $SamAccountName + [string]$inc
+            $SamAccountName = $TempSamAccountName + [string]$inc
         }
         until (!(Get-ADuser -Filter {SamAccountName -eq $SamAccountName}))   
     }
